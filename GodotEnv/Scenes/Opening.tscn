@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Fonts/new_dynamicfont.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Graphics/start_btn_normal.png" type="Texture" id=2]
-[ext_resource path="res://Graphics/start_btn_pressed.png" type="Texture" id=3]
-[ext_resource path="res://Graphics/start_btn_hover.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/src/StartButton.gd" type="Script" id=5]
+[ext_resource path="res://Fonts/Console12.tres" type="DynamicFont" id=6]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends ColorRect
@@ -17,6 +15,18 @@ func _ready():
 #func _process(delta):
 #	pass
 "
+
+[sub_resource type="StreamTexture" id=2]
+flags = 4
+load_path = "res://.import/start_btn_normal.png-80a62ccc5c98c3f0943f347ba8babe3a.stex"
+
+[sub_resource type="StreamTexture" id=3]
+flags = 4
+load_path = "res://.import/start_btn_pressed.png-ade2e77359b07357922b93dff0ee5024.stex"
+
+[sub_resource type="StreamTexture" id=4]
+flags = 4
+load_path = "res://.import/start_btn_hover.png-0fc9a826db8f3aeb005b219622610369.stex"
 
 [node name="Background" type="ColorRect"]
 anchor_right = 1.0
@@ -33,7 +43,10 @@ margin_left = 172.2
 margin_top = 145.0
 margin_right = -159.2
 margin_bottom = -158.0
-custom_colors/font_color = Color( 0, 0.560784, 0.0666667, 1 )
+custom_colors/font_color = Color( 0, 0.686275, 0.0823529, 1 )
+custom_colors/font_color_shadow = Color( 0.101961, 0.411765, 0, 1 )
+custom_constants/shadow_offset_x = 1
+custom_constants/shadow_offset_y = 1
 custom_fonts/font = ExtResource( 1 )
 text = "[Error] : Packet Panic ! (0x38707267)"
 align = 1
@@ -45,9 +58,9 @@ margin_top = 386.0
 margin_right = 968.0
 margin_bottom = 634.0
 rect_scale = Vector2( 0.5, 0.5 )
-texture_normal = ExtResource( 2 )
-texture_pressed = ExtResource( 3 )
-texture_hover = ExtResource( 4 )
+texture_normal = SubResource( 2 )
+texture_pressed = SubResource( 3 )
+texture_hover = SubResource( 4 )
 script = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="."]
@@ -59,8 +72,7 @@ margin_left = 2.36798
 margin_top = 1.07996
 margin_right = -0.936035
 margin_bottom = 0.559967
-custom_fonts/font = ExtResource( 1 )
-text = "START
-GAME"
+custom_fonts/font = ExtResource( 6 )
+text = "START_GAME()"
 align = 1
 valign = 1
