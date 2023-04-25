@@ -1,0 +1,7 @@
+cd
+ls
+cat
+ipconfig
+nmap
+arp
+ssh
