@@ -5,5 +5,5 @@ func _ready():
 	f.open("res://resources/documentation.txt", File.READ)
 	while not f.eof_reached(): # iterate through all lines until the end of file is reached
 		var line = f.get_line()
-		self.text += line + "\n"
+		self.bbcode_text += line + "\n"
 	f.close()

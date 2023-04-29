@@ -1,9 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Graphics/buttons/image_#g3869_btn.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Main/UI.gd" type="Script" id=2]
 [ext_resource path="res://Graphics/buttons/image_#g3858_btn.png" type="Texture" id=3]
-[ext_resource path="res://Graphics/themes/BaseTheme.tres" type="Theme" id=4]
+[ext_resource path="res://Graphics/themes/black.tres" type="Theme" id=4]
 [ext_resource path="res://Graphics/buttons/image_#g3905_btn.png" type="Texture" id=5]
 [ext_resource path="res://Graphics/buttons/image_#g3844_btn.png" type="Texture" id=6]
 [ext_resource path="res://Graphics/buttons/image_#g3852_btn.png" type="Texture" id=7]
@@ -12,6 +12,8 @@
 [ext_resource path="res://Graphics/buttons/image_#g3875_btn.png" type="Texture" id=10]
 [ext_resource path="res://Graphics/buttons/image_#g3899_btn.png" type="Texture" id=11]
 [ext_resource path="res://Scenes/Main/Documentation.gd" type="Script" id=12]
+[ext_resource path="res://Graphics/themes/BaseTheme.tres" type="Theme" id=13]
+[ext_resource path="res://Scenes/Main/Packet2.gd" type="Script" id=14]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends LineEdit
@@ -60,6 +62,7 @@ margin_bottom = 95.0
 rect_min_size = Vector2( 0, 95 )
 size_flags_horizontal = 5
 size_flags_vertical = 4
+theme = ExtResource( 4 )
 text = "User@PC Linux v9.23.04 :"
 scroll_following = true
 
@@ -79,7 +82,9 @@ margin_right = 247.0
 margin_bottom = 566.0
 rect_min_size = Vector2( 0, 100 )
 size_flags_vertical = 3
+theme = ExtResource( 4 )
 scroll_following = true
+script = ExtResource( 14 )
 
 [node name="Button" type="Button" parent="UI/ColorRect/HBoxContainer/User_Input_Panel"]
 margin_top = 570.0
@@ -202,25 +207,26 @@ margin_right = 773.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.2
+theme = ExtResource( 13 )
 tab_align = 0
 
 [node name="Doc" type="Tabs" parent="UI/ColorRect/HBoxContainer/Game_Window/Documentation"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 6.0
-margin_top = 27.0
-margin_right = -6.0
-margin_bottom = -2.0
+margin_top = 24.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.4
+theme = ExtResource( 4 )
+custom_colors/font_color_bg = Color( 0, 0, 0, 1 )
 
 [node name="Documentation" type="RichTextLabel" parent="UI/ColorRect/HBoxContainer/Game_Window/Documentation/Doc"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_clip_content = false
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "
-"
+theme = ExtResource( 4 )
+bbcode_enabled = true
 script = ExtResource( 12 )
 
 [node name="Game" type="Tabs" parent="UI/ColorRect/HBoxContainer/Game_Window/Documentation"]

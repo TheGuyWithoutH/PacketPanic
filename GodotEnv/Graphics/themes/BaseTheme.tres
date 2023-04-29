@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=2 format=2]
+[gd_resource type="Theme" load_steps=3 format=2]
 
 [ext_resource path="res://Graphics/defstylebox.tres" type="StyleBox" id=1]
+[ext_resource path="res://Graphics/themes/black_stylebox.tres" type="StyleBox" id=2]
 
 [resource]
 Button/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
@@ -50,7 +51,7 @@ TabContainer/icons/increment = null
 TabContainer/icons/increment_highlight = null
 TabContainer/icons/menu = null
 TabContainer/icons/menu_highlight = null
-TabContainer/styles/panel = ExtResource( 1 )
+TabContainer/styles/panel = ExtResource( 2 )
 TabContainer/styles/tab_bg = ExtResource( 1 )
 TabContainer/styles/tab_disabled = null
 TabContainer/styles/tab_fg = ExtResource( 1 )

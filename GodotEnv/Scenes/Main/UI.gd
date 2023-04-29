@@ -10,7 +10,6 @@ func _ready():
 	dipreg.compile("set_dest_IP\\((([0-9]{1,3}\\.){3}[0-9]{1,3})\\)")
 	sipreg.compile("set_src_IP\\((([0-9]{1,3}\\.){3}[0-9]{1,3})\\)")
 	$ColorRect/HBoxContainer/User_Input_Panel/TermInput.text = "> "
-	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text = "PACKET:"
 	$ColorRect/HBoxContainer/User_Input_Panel/TermInput.caret_position = 2
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeval.text = "%d" % $ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.value
 
@@ -53,10 +52,12 @@ func _on_LineEdit_text_entered(new_text):
 		
 		var dip = dipreg.search(new_text)
 		if dip:
-			$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nDest IP : " + dip.get_string(1)
+			$ColorRect/HBoxContainer/User_Input_Panel/Packet2.packet.dest_ip = dip.get_string(1)
+			$ColorRect/HBoxContainer/User_Input_Panel/Packet2.print_packet()
 		var sip = sipreg.search(new_text)
 		if sip:
-			$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nSource IP : " + sip.get_string(1)
+			$ColorRect/HBoxContainer/User_Input_Panel/Packet2.packet.src_ip = sip.get_string(1)
+			$ColorRect/HBoxContainer/User_Input_Panel/Packet2.print_packet()
 
 func _on_timeslider_value_changed(value):
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeval.text = "%d" % value
