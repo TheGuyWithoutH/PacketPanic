@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnfcevreolha3"]
+
+[ext_resource type="Script" path="res://network/nodes/logic_node.gd" id="1_d4smj"]
+[ext_resource type="Texture2D" uid="uid://bcr6mpdxfy6p3" path="res://assets/icons/Cercle.png" id="2_lev4l"]
+
+[node name="LogicNode" type="Node2D"]
+script = ExtResource("1_d4smj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.203)
+texture = ExtResource("2_lev4l")

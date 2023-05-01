@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0xot2bqsjl2u"]
+
+[ext_resource type="Script" path="res://network/nodes/dead_node.gd" id="1_b1i4x"]
+[ext_resource type="Texture2D" uid="uid://dghowub8tdyyu" path="res://assets/icons/Deadnode.png" id="2_y6tlf"]
+
+[node name="DeadNode" type="Node2D"]
+script = ExtResource("1_b1i4x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0990089, 0.101545)
+texture = ExtResource("2_y6tlf")

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://skvbxuljqssd"]
+
+[ext_resource type="Script" path="res://network/nodes/client_node.gd" id="1_thxgd"]
+[ext_resource type="Texture2D" uid="uid://dm6ijqbi8a2h3" path="res://assets/icons/start.png" id="2_vklx5"]
+
+[node name="ClientNode" type="Node2D"]
+script = ExtResource("1_thxgd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_vklx5")
