@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbwkr1l2kpwc7"]
+
+[ext_resource type="Script" path="res://network/nodes/dns_node.gd" id="1_8twaj"]
+[ext_resource type="Texture2D" uid="uid://bydu6yh82mk1b" path="res://assets/icons/DNS.png" id="2_3ap6t"]
+
+[node name="DnsNode" type="Node2D"]
+z_index = 3
+script = ExtResource("1_8twaj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_3ap6t")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -22.0
+offset_top = -24.0
+offset_right = 18.0
+offset_bottom = 16.0
+scale = Vector2(1.2, 1.2)
+tooltip_text = "Hola"
