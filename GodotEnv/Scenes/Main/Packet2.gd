@@ -1,23 +1,11 @@
 extends RichTextLabel
 
-var packet = {
-	"src_ip":"n/a",
-	"dest_ip":"n/a",
-	"dns":"n/a",
-	"crypt_meth":"n/a",
-	"vpn":"n/a",
-	"port":"n/a",
-	"http_req":"n/a",
-	"mac_addr":"n/a"
-}
+const Packet = preload("res://network/Packet.tscn")
+
+@onready var editpack = Packet.instantiate()
 
 func _ready():
-	packet.src_ip = "192.168.0.78"
-	print_packet()
-	
-func print_packet():
-	text = "PACKET OVERWIEV\n"
-	text += "src_IP : %s \n" % packet.src_ip
-	text += "dest_IP : %s \n" % packet.dest_ip
-	text += "port : %s \n" % packet.port
-	
+	editpack.setDestination('185.25.195.105')
+	editpack.setMac('5E:FF:56:A2:AF:03')
+	editpack.setPort(80)
+

@@ -50,10 +50,10 @@ func _on_LineEdit_text_entered(new_text):
 			$ColorRect/HBoxContainer/User_Input_Panel/Terminal.text += "\n" + new_text
 			$ColorRect/HBoxContainer/User_Input_Panel/Terminal.text += terminal_exec(cmd_idx,new_text)
 		
-		var dip = dipreg.search(new_text)
+		var dip = dipreg.search(new_text) # search for destination ip address
 		if dip:
-			$ColorRect/HBoxContainer/User_Input_Panel/Packet2.packet.dest_ip = dip.get_string(1)
-			$ColorRect/HBoxContainer/User_Input_Panel/Packet2.print_packet()
+			$ColorRect/HBoxContainer/Game_Window/NetWork_Window/GameBoard/SubViewportContainer/SubViewport/BasicLevel.packet.setDestination('185.25.195.105')
+			print("set dest")
 		var sip = sipreg.search(new_text)
 		if sip:
 			$ColorRect/HBoxContainer/User_Input_Panel/Packet2.packet.src_ip = sip.get_string(1)
@@ -64,7 +64,7 @@ func _on_timeslider_value_changed(value):
 
 
 func _on_Button_pressed():
-	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/PanelContainer/DEBUG.text = $ColorRect/HBoxContainer/User_Input_Panel/Packet2.text
+	pass
 	
 func is_command(cmd):
 	cmd += " "
@@ -80,8 +80,8 @@ func is_command(cmd):
 func terminal_exec(cmd,arg):
 	arg = arg.substr(arg.find(cmd) + cmd.length()+1)
 	match cmd:
-		"cat":
-			return "\nYou're a kitty !"
+		"netcat":
+			return "\nYou're a kitty ! : " + arg
 		_: 
 			return "\ncaught " + cmd + " with arguments : " + arg
 	

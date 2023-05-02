@@ -1,6 +1,3 @@
-set_src_IP
-set_dest_IP
 netcat
-set_port
-get_MAC
-spec_dns
+ping
+nmap
