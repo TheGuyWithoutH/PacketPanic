@@ -14,7 +14,7 @@ func create(num_links, id, params):
 	links = []
 	links.resize(num_links)
 	node_id = id
-	if(params && params['addr']):
+	if(params && params.get('addr')):
 		ip = Utils.IPAddress.new(params['addr'])
 	
 

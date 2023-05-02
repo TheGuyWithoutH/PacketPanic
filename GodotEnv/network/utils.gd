@@ -15,7 +15,7 @@ class IPAddress:
 		return regex.search(address).get_string() == address
 
 class MACAddress:
-	var mac_address
+	var mac_address: String
 	
 	func _init(address):
 		assert(_checkMacAddress(address))
@@ -27,7 +27,9 @@ class MACAddress:
 		return regex.search(address).get_string() == address
 	
 	func toInteger():
-		return 10
+		var numbers = mac_address.split(':')
+		print(int(numbers[numbers.size() - 1]))
+		return int(numbers[numbers.size() - 1])
 
 enum Encryption {NONE, RSA, AES, POST_QUANTUM}
 

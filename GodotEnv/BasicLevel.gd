@@ -11,6 +11,8 @@ func _ready():
 	var json = json_file.parse_string(file.get_as_text())
 	var packet = Packet.instantiate()
 	packet.setDestination('185.25.195.105')
+	packet.setMac('5E:FF:56:A2:AF:03')
+	packet.setPort(80)
 	var network = manager.instantiate()
 	network.create(json, packet)
 	add_child(network)

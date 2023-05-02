@@ -6,6 +6,9 @@ func create(num_links, id, params):
 	super.create(num_links, id, null)
 	if(params && params['shifting']):
 		shifting = params['shifting']
+		$Label.text = str(shifting)
+	else:
+		$Label.text = "MAC"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,7 +24,10 @@ func receivePacket(packet: Packet, link: int):
 	var out_link
 	var in_link: int = links.find(link, 0)
 	if(shifting == -1):
-		out_link = (in_link + packet.mac_addr.toInteger()) % num_links
+		if(packet.mac_addr):
+			out_link = (in_link + packet.mac_addr.toInteger()) % num_links
+		else:
+			out_link = (in_link + 1) % num_links
 	else:
 		out_link = (in_link + shifting) % num_links
 	_sendPacket(packet, out_link)

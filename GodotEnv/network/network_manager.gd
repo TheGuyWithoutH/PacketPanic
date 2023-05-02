@@ -24,7 +24,7 @@ func create(level: Dictionary, packet: Packet):
 			'logic':
 				nodeObj = LogicNode.instantiate()
 				var params = null
-				if(node['shifting']):
+				if(node.get('shifting')):
 					params = {'shifting': node['shifting']}
 				nodeObj.create(node['out_num'], i, params)
 			'dead':
@@ -32,7 +32,7 @@ func create(level: Dictionary, packet: Packet):
 				nodeObj.create(node['out_num'], i, null)
 			'server':
 				nodeObj = ServerNode.instantiate()
-				nodeObj.create(node['out_num'], i, { 'addr': node['addr']})
+				nodeObj.create(node['out_num'], i, { 'addr': node['addr'], 'port': node.get('port', -1), 'target_src': node.get('target_src'), 'http_method': node.get('http_method')})
 			'start':
 				nodeObj = ClientNode.instantiate()
 				nodeObj.create(1, i, null)

@@ -6,8 +6,8 @@ var utils
 var src_addr
 var dst_addr
 var mac_addr: Utils.MACAddress
-var http_method
-var port
+var http_method: Utils.HTTPMethod = -1
+var port: int = -1
 var vpn
 var encryption
 var isTampered = false
