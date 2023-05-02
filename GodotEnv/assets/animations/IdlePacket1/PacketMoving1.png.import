@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3ah31msdvgp1"
-path="res://.godot/imported/5.svg-a0400843d1e6ad6cbabb28d18ad10ec9.ctex"
+uid="uid://bjggkqfkkchs8"
+path="res://.godot/imported/PacketMoving1.png-39e75595f1f86778c0fa43022ed60eea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/animations/IdlePacket1/5.svg"
-dest_files=["res://.godot/imported/5.svg-a0400843d1e6ad6cbabb28d18ad10ec9.ctex"]
+source_file="res://assets/animations/IdlePacket1/PacketMoving1.png"
+dest_files=["res://.godot/imported/PacketMoving1.png-39e75595f1f86778c0fa43022ed60eea.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

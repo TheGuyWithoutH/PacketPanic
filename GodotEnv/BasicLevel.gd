@@ -1,32 +1,21 @@
 extends Node2D
 
 @export var manager: PackedScene
+@export var json_file: JSON
+const Packet = preload("res://network/Packet.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var file = FileAccess.open(json_file.resource_path, FileAccess.READ)
+	var json = json_file.parse_string(file.get_as_text())
+	var packet = Packet.instantiate()
+	packet.setDestination('185.25.195.105')
 	var network = manager.instantiate()
-	network.create({
-		'nodes': [
-			{
-				'type': "start",
-				'position': [1683, 1597]
-			},
-			{
-				'type': "server",
-				'position': [1483, 1446],
-				'out_num': 2
-			},
-			{
-				'type': "dead",
-				'position': [1588, 1268]
-			},
-		],
-		'links': [
-			
-		]
-	})
+	network.create(json, packet)
 	add_child(network)
+	add_child(packet)
+	network.startGame(packet)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

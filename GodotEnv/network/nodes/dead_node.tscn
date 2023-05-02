@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dghowub8tdyyu" path="res://assets/icons/Deadnode.png" id="2_y6tlf"]
 
 [node name="DeadNode" type="Node2D"]
+z_index = 3
 script = ExtResource("1_b1i4x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

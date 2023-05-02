@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 class_name Packet
 
@@ -45,3 +45,10 @@ func setVPN(location: Utils.VPNs):
 func tamperMessage():
 	isTampered = true
 
+func setMoving(move: bool):
+	if(move):
+		$AnimatedSprite2D.play("Moving")
+		$Camera2D.allowDrag = false
+	else:
+		$AnimatedSprite2D.play("Still")
+		$Camera2D.allowDrag = true

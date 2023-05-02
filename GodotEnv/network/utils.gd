@@ -11,7 +11,7 @@ class IPAddress:
 	
 	func _checkIpAddress(address):
 		var regex = RegEx.new()
-		regex.compile("^(25[0–5]|2[0–4][0–9]|[01]?[0–9][0–9]?).(25[0–5]|2[0–4][0–9]|[01]?[0–9][0–9]?).(25[0–5]|2[0–4][0–9]|[01]?[0–9][0–9]?).(25[0–5]|2[0–4][0–9]|[01]?[0–9][0–9]?)$")
+		regex.compile("^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$")
 		return regex.search(address).get_string() == address
 
 class MACAddress:

@@ -2,16 +2,20 @@ extends Node2D
 
 class_name NetworkNode
 
-var num_links = 0
+var num_links: int = 0
 var links: Array
 var node_id: int
 signal sendPacket(packet: Packet, link: int, node_id: int)
+signal endGame(success: bool, error: String)
+var ip: Utils.IPAddress = null
 
-func create(num_links, id):
+func create(num_links, id, params):
 	self.num_links = num_links
 	links = []
 	links.resize(num_links)
 	node_id = id
+	if(params && params['addr']):
+		ip = Utils.IPAddress.new(params['addr'])
 	
 
 # Called when the node enters the scene tree for the first time.
@@ -29,9 +33,11 @@ func setLink(out: int, link_id: int):
 	links[out] = link_id
 
 func receivePacket(packet: Packet, link: int):
-	assert(link < num_links)
+	assert(links.find(link) > -1 && links.find(link) < num_links)
+	packet.position = self.position
+	packet.setMoving(false)
 	pass
 
 # Send a packet to a node
 func _sendPacket(packet: Packet, link: int):
-	sendPacket.emit(packet, link, node_id)
+	sendPacket.emit(packet, links[link], node_id)
