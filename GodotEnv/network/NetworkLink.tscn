@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://4ggrbaoixdw2"]
+
+[ext_resource type="Script" path="res://network/NetworkLink.gd" id="1_oegtw"]
+
+[node name="NetworkLink" type="Node2D"]
+z_index = 1
+script = ExtResource("1_oegtw")
