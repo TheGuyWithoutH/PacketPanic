@@ -24,7 +24,7 @@ func create(level: Dictionary, packet: Packet):
 			'logic':
 				nodeObj = LogicNode.instantiate()
 				var params = null
-				if(node['shifting']):
+				if(node.get('shifting')):
 					params = {'shifting': node['shifting']}
 				nodeObj.create(node['out_num'], i, params)
 			'dead':

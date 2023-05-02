@@ -7,7 +7,7 @@ var src_addr
 var dst_addr
 var mac_addr: Utils.MACAddress
 var http_method
-var port
+var port: int = -1
 var vpn
 var encryption
 var isTampered = false
