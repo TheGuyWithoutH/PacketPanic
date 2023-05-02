@@ -8,7 +8,8 @@
 	  "type": "server",
 	  "position": [1483, 1446],
 	  "out_num": 2,
-	  "addr": "185.25.195.104"
+	  "addr": "185.25.195.104",
+	  "http_method": "GET"
 	},
 	{
 	  "type": "dns",

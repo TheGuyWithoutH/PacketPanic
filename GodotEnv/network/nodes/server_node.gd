@@ -10,14 +10,20 @@ func create(num_links, id, params):
 	super.create(num_links, id, params)
 	$Control.tooltip_text = 'IP: ' + ip.ip_address + '\nPort: ' + str(target_port)
 	
-	if(params.get('http_method')):
+	if(params.get('http_method', null)):
 		match(params['http_method']):
-			['GET']:
+			'GET':
 				target_http_method = Utils.HTTPMethod.GET
-			['POST']:
+			'POST':
 				target_http_method = Utils.HTTPMethod.POST
-			['DELETE']:
+			'DELETE':
 				target_http_method = Utils.HTTPMethod.DELETE
+	
+	if(params.get('port', -1) > -1):
+		target_port = params['port']
+	
+	if(params.get('target_src')):
+		target_src_ip =  Utils.IPAddress.new(params['target_src'])
 
 func receivePacket(packet: Packet, link: int):
 	super.receivePacket(packet, link)
