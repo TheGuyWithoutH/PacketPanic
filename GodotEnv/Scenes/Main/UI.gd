@@ -10,7 +10,7 @@ func _ready():
 	dipreg.compile("set_dest_IP\\((([0-9]{1,3}\\.){3}[0-9]{1,3})\\)")
 	sipreg.compile("set_src_IP\\((([0-9]{1,3}\\.){3}[0-9]{1,3})\\)")
 	$ColorRect/HBoxContainer/User_Input_Panel/TermInput.text = "> "
-	$ColorRect/HBoxContainer/User_Input_Panel/TermInput.caret_position = 2
+	$ColorRect/HBoxContainer/User_Input_Panel/TermInput.caret_column = 2
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeval.text = "%d" % $ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.value
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,14 +20,14 @@ func _ready():
 func _input(event):
 	if event is InputEventKey and event.pressed:
 		if $ColorRect/HBoxContainer/User_Input_Panel/Terminal.text.split("\n").size() != 1:
-			if event.scancode == KEY_UP:
+			if event.keycode == KEY_UP:
 				$ColorRect/HBoxContainer/User_Input_Panel/TermInput.text = entryarray[cmdindex-1]
-				$ColorRect/HBoxContainer/User_Input_Panel/TermInput.caret_position = -1
+				$ColorRect/HBoxContainer/User_Input_Panel/TermInput.caret_column = -1
 				cmdindex -= 1
 				if cmdindex < 2 : cmdindex = 2;
-			if event.scancode == KEY_DOWN:
+			if event.keycode == KEY_DOWN:
 				$ColorRect/HBoxContainer/User_Input_Panel/TermInput.text = entryarray[cmdindex-1]
-				$ColorRect/HBoxContainer/User_Input_Panel/TermInput.caret_position = -1
+				$ColorRect/HBoxContainer/User_Input_Panel/TermInput.caret_column = -1
 				cmdindex += 1
 				if cmdindex > entryarray.size():
 					cmdindex = entryarray.size()
@@ -40,7 +40,7 @@ func _on_LineEdit_text_entered(new_text):
 		
 		$ColorRect/HBoxContainer/User_Input_Panel/TermInput.clear()
 		$ColorRect/HBoxContainer/User_Input_Panel/TermInput.text = "> "
-		$ColorRect/HBoxContainer/User_Input_Panel/TermInput.caret_position = 2
+		$ColorRect/HBoxContainer/User_Input_Panel/TermInput.caret_column = 2
 		
 		var cmd_idx = is_command(new_text)
 		if cmd_idx == null:
@@ -68,8 +68,7 @@ func _on_Button_pressed():
 	
 func is_command(cmd):
 	cmd += " "
-	var f = File.new()
-	f.open(cmdlist, File.READ)
+	var f = FileAccess.open(cmdlist, FileAccess.READ)
 	while not f.eof_reached(): # iterate through all lines until the end of file is reached
 		var line = f.get_line()
 		if line + " " == cmd.substr(2,line.length()+1):

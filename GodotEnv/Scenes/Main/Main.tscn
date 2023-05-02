@@ -1,247 +1,209 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=16 format=3 uid="uid://cjx0fa1rkh8lh"]
 
-[ext_resource path="res://Graphics/buttons/image_#g3869_btn.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/Main/UI.gd" type="Script" id=2]
-[ext_resource path="res://Graphics/buttons/image_#g3858_btn.png" type="Texture" id=3]
-[ext_resource path="res://Graphics/themes/black.tres" type="Theme" id=4]
-[ext_resource path="res://Graphics/buttons/image_#g3905_btn.png" type="Texture" id=5]
-[ext_resource path="res://Graphics/buttons/image_#g3844_btn.png" type="Texture" id=6]
-[ext_resource path="res://Graphics/buttons/image_#g3852_btn.png" type="Texture" id=7]
-[ext_resource path="res://Graphics/buttons/image_#g3848_btn.png" type="Texture" id=8]
-[ext_resource path="res://Graphics/buttons/image_#g2493-0_btn.png" type="Texture" id=9]
-[ext_resource path="res://Graphics/buttons/image_#g3875_btn.png" type="Texture" id=10]
-[ext_resource path="res://Graphics/buttons/image_#g3899_btn.png" type="Texture" id=11]
-[ext_resource path="res://Scenes/Main/Documentation.gd" type="Script" id=12]
-[ext_resource path="res://Graphics/themes/BaseTheme.tres" type="Theme" id=13]
-[ext_resource path="res://Scenes/Main/Packet2.gd" type="Script" id=14]
+[ext_resource type="Texture2D" uid="uid://bq2plhlptb85c" path="res://Graphics/buttons/image_#g3869_btn.png" id="1"]
+[ext_resource type="Script" path="res://Scenes/Main/UI.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://dr7xbq1rks3ja" path="res://Graphics/buttons/image_#g3858_btn.png" id="3"]
+[ext_resource type="Theme" uid="uid://bokk2oehtgs2h" path="res://Graphics/themes/black.tres" id="4"]
+[ext_resource type="Texture2D" uid="uid://b1wftyv6coqry" path="res://Graphics/buttons/image_#g3905_btn.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://cguf5yeddyt7e" path="res://Graphics/buttons/image_#g3844_btn.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://dlqeknfj13k1y" path="res://Graphics/buttons/image_#g3852_btn.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://brblq57axn26e" path="res://Graphics/buttons/image_#g3848_btn.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://dmux6ocsuhk4c" path="res://Graphics/buttons/image_#g2493-0_btn.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://dc65ejj7a5saj" path="res://Graphics/buttons/image_#g3875_btn.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://v4ej6owspyac" path="res://Graphics/buttons/image_#g3899_btn.png" id="11"]
+[ext_resource type="Script" path="res://Scenes/Main/Documentation.gd" id="12"]
+[ext_resource type="Theme" path="res://Graphics/themes/BaseTheme.tres" id="13"]
+[ext_resource type="Script" path="res://Scenes/Main/Packet2.gd" id="14"]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id="1"]
 script/source = "extends LineEdit
 
 func _ready():
 	self.caret_blink = true
 
 func _process(delta):
-	if self.caret_position < 2:
-		self.caret_position = 2
+	if self.caret_column < 2:
+		self.caret_column = 2
 "
 
 [node name="Main" type="Node"]
 
 [node name="UI" type="ReferenceRect" parent="."]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 4 )
+theme = ExtResource("4")
 border_width = 0.0
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="ColorRect" type="ColorRect" parent="UI"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-color = Color( 0.160784, 0.160784, 0.160784, 1 )
+color = Color(0.160784, 0.160784, 0.160784, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/ColorRect"]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="User_Input_Panel" type="VBoxContainer" parent="UI/ColorRect/HBoxContainer"]
-margin_right = 247.0
-margin_bottom = 600.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.32
 
 [node name="Terminal" type="RichTextLabel" parent="UI/ColorRect/HBoxContainer/User_Input_Panel"]
-margin_right = 247.0
-margin_bottom = 95.0
-rect_min_size = Vector2( 0, 95 )
+custom_minimum_size = Vector2(0, 95)
+layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 4
-theme = ExtResource( 4 )
+theme = ExtResource("4")
 text = "User@PC Linux v9.23.04 :"
 scroll_following = true
 
 [node name="TermInput" type="LineEdit" parent="UI/ColorRect/HBoxContainer/User_Input_Panel"]
-margin_top = 99.0
-margin_right = 247.0
-margin_bottom = 118.0
-theme = ExtResource( 4 )
+layout_mode = 2
+theme = ExtResource("4")
 middle_mouse_paste_enabled = false
 selecting_enabled = false
 caret_blink = true
-script = SubResource( 1 )
+script = SubResource("1")
 
 [node name="Packet2" type="RichTextLabel" parent="UI/ColorRect/HBoxContainer/User_Input_Panel"]
-margin_top = 122.0
-margin_right = 247.0
-margin_bottom = 566.0
-rect_min_size = Vector2( 0, 100 )
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource( 4 )
+theme = ExtResource("4")
 scroll_following = true
-script = ExtResource( 14 )
+script = ExtResource("14")
 
 [node name="Button" type="Button" parent="UI/ColorRect/HBoxContainer/User_Input_Panel"]
-margin_top = 570.0
-margin_right = 247.0
-margin_bottom = 600.0
-rect_min_size = Vector2( 60, 30 )
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
 size_flags_horizontal = 3
 text = "/!\\ SEND PACKET /!\\"
 
 [node name="Game_Window" type="HSplitContainer" parent="UI/ColorRect/HBoxContainer"]
-margin_left = 251.0
-margin_right = 1024.0
-margin_bottom = 600.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="NetWork_Window" type="VBoxContainer" parent="UI/ColorRect/HBoxContainer/Game_Window"]
-margin_right = 638.0
-margin_bottom = 600.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="PanelContainer" type="ColorRect" parent="UI/ColorRect/HBoxContainer/Game_Window/NetWork_Window"]
-margin_right = 638.0
-margin_bottom = 551.0
+layout_mode = 2
 size_flags_vertical = 3
-color = Color( 0, 0, 0, 1 )
+color = Color(0, 0, 0, 1)
 
 [node name="DEBUG" type="Label" parent="UI/ColorRect/HBoxContainer/Game_Window/NetWork_Window/PanelContainer"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -200.0
-margin_top = -200.0
-margin_right = 200.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 400, 400 )
-align = 1
-valign = 1
-autowrap = true
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
 
 [node name="timeline" type="ColorRect" parent="UI/ColorRect/HBoxContainer/Game_Window/NetWork_Window"]
-margin_top = 555.0
-margin_right = 638.0
-margin_bottom = 600.0
+clip_contents = true
+layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.08
-color = Color( 0.160784, 0.160784, 0.160784, 1 )
+color = Color(0.160784, 0.160784, 0.160784, 1)
 
 [node name="timecont" type="HBoxContainer" parent="UI/ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline"]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4")
 
 [node name="timeslider" type="HSlider" parent="UI/ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont"]
-margin_right = 502.0
-margin_bottom = 45.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-theme = ExtResource( 4 )
+theme = ExtResource("4")
 step = 10.0
 tick_count = 11
 ticks_on_borders = true
 
 [node name="timeval" type="Label" parent="UI/ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont"]
-margin_left = 506.0
-margin_top = 7.0
-margin_right = 536.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 30, 30 )
-align = 1
-valign = 1
-autowrap = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
 uppercase = true
 
 [node name="return" type="TextureButton" parent="UI/ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont"]
-margin_left = 540.0
-margin_top = 7.0
-margin_right = 570.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 30, 30 )
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-texture_normal = ExtResource( 5 )
-texture_pressed = ExtResource( 10 )
-texture_hover = ExtResource( 11 )
-expand = true
+texture_normal = ExtResource("5")
+texture_pressed = ExtResource("10")
+texture_hover = ExtResource("11")
 stretch_mode = 4
 
 [node name="play" type="TextureButton" parent="UI/ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont"]
-margin_left = 574.0
-margin_top = 7.0
-margin_right = 604.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 30, 30 )
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-texture_normal = ExtResource( 8 )
-texture_pressed = ExtResource( 7 )
-texture_hover = ExtResource( 6 )
-expand = true
+texture_normal = ExtResource("8")
+texture_pressed = ExtResource("7")
+texture_hover = ExtResource("6")
 stretch_mode = 4
 
 [node name="forward" type="TextureButton" parent="UI/ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont"]
-margin_left = 608.0
-margin_top = 7.0
-margin_right = 638.0
-margin_bottom = 37.0
-rect_min_size = Vector2( 30, 30 )
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-texture_normal = ExtResource( 9 )
-texture_pressed = ExtResource( 1 )
-texture_hover = ExtResource( 3 )
-expand = true
+texture_normal = ExtResource("9")
+texture_pressed = ExtResource("1")
+texture_hover = ExtResource("3")
 stretch_mode = 4
 
 [node name="Documentation" type="TabContainer" parent="UI/ColorRect/HBoxContainer/Game_Window"]
-margin_left = 650.0
-margin_right = 773.0
-margin_bottom = 600.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.2
-theme = ExtResource( 13 )
-tab_align = 0
+theme = ExtResource("13")
 
-[node name="Doc" type="Tabs" parent="UI/ColorRect/HBoxContainer/Game_Window/Documentation"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 24.0
+[node name="Doc" type="TabBar" parent="UI/ColorRect/HBoxContainer/Game_Window/Documentation"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.4
-theme = ExtResource( 4 )
-custom_colors/font_color_bg = Color( 0, 0, 0, 1 )
+theme = ExtResource("4")
 
 [node name="Documentation" type="RichTextLabel" parent="UI/ColorRect/HBoxContainer/Game_Window/Documentation/Doc"]
+clip_contents = false
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_clip_content = false
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 4 )
+theme = ExtResource("4")
 bbcode_enabled = true
-script = ExtResource( 12 )
+script = ExtResource("12")
 
-[node name="Game" type="Tabs" parent="UI/ColorRect/HBoxContainer/Game_Window/Documentation"]
+[node name="Game" type="TabBar" parent="UI/ColorRect/HBoxContainer/Game_Window/Documentation"]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -4.0
-margin_bottom = -4.0
-custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
-custom_colors/font_color_bg = Color( 1, 1, 1, 1 )
-custom_colors/font_color_fg = Color( 1, 1, 1, 1 )
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 
 [connection signal="text_changed" from="UI/ColorRect/HBoxContainer/User_Input_Panel/TermInput" to="UI/ColorRect/HBoxContainer/User_Input_Panel/TermInput" method="_on_TermInput_text_changed"]
-[connection signal="text_entered" from="UI/ColorRect/HBoxContainer/User_Input_Panel/TermInput" to="UI" method="_on_LineEdit_text_entered"]
+[connection signal="text_submitted" from="UI/ColorRect/HBoxContainer/User_Input_Panel/TermInput" to="UI" method="_on_LineEdit_text_entered"]
 [connection signal="pressed" from="UI/ColorRect/HBoxContainer/User_Input_Panel/Button" to="UI" method="_on_Button_pressed"]
 [connection signal="value_changed" from="UI/ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider" to="UI" method="_on_timeslider_value_changed"]
