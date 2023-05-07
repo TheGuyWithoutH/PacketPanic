@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://celll5cghpmli"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/BasicLevel.gd" id="1_hh4dx"]
+[ext_resource type="PackedScene" uid="uid://b0syi3emene8q" path="res://network/network_manager.tscn" id="2_pabke"]
+[ext_resource type="JSON" path="res://Scenes/Levels/level2/level2.json" id="3_ivqdx"]
+[ext_resource type="Texture2D" uid="uid://gemwftom1k0u" path="res://assets/images/Carte.png" id="4_njs42"]
+
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_hh4dx")
+manager = ExtResource("2_pabke")
+json_file = ExtResource("3_ivqdx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2216, 1272)
+texture = ExtResource("4_njs42")

@@ -1,10 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://cjx0fa1rkh8lh"]
+[gd_scene load_steps=18 format=3 uid="uid://dsido5vwwogt3"]
 
 [ext_resource type="Texture2D" uid="uid://bq2plhlptb85c" path="res://Graphics/buttons/image_#g3869_btn.png" id="1"]
 [ext_resource type="Script" path="res://Scenes/Main/UI.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://dr7xbq1rks3ja" path="res://Graphics/buttons/image_#g3858_btn.png" id="3"]
+[ext_resource type="PackedScene" uid="uid://c38nks18qoy4b" path="res://Scenes/Levels/level1/Level1.tscn" id="3_qnaup"]
 [ext_resource type="Theme" uid="uid://bokk2oehtgs2h" path="res://Graphics/themes/black.tres" id="4"]
-[ext_resource type="PackedScene" uid="uid://cot8n3k3nm2s" path="res://Scenes/Levels/BasicLevel.tscn" id="4_l7qeo"]
 [ext_resource type="Texture2D" uid="uid://b1wftyv6coqry" path="res://Graphics/buttons/image_#g3905_btn.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://cguf5yeddyt7e" path="res://Graphics/buttons/image_#g3844_btn.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://dlqeknfj13k1y" path="res://Graphics/buttons/image_#g3852_btn.png" id="7"]
@@ -40,6 +40,7 @@ size_flags_vertical = 3
 theme = ExtResource("4")
 border_width = 0.0
 script = ExtResource("2")
+levelScene = ExtResource("3_qnaup")
 
 [node name="ColorRect" type="ColorRect" parent="UI"]
 layout_mode = 0
@@ -117,14 +118,11 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="UI/ColorRect/HBoxContainer/Game_Window/NetWork_Window/GameBoard/SubViewportContainer"]
+[node name="LevelView" type="SubViewport" parent="UI/ColorRect/HBoxContainer/Game_Window/NetWork_Window/GameBoard/SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(719, 577)
 render_target_update_mode = 4
 script = SubResource("GDScript_ipldv")
-
-[node name="BasicLevel" parent="UI/ColorRect/HBoxContainer/Game_Window/NetWork_Window/GameBoard/SubViewportContainer/SubViewport" instance=ExtResource("4_l7qeo")]
-position = Vector2(-1083, -1290)
 
 [node name="timeline" type="ColorRect" parent="UI/ColorRect/HBoxContainer/Game_Window/NetWork_Window"]
 layout_mode = 2
@@ -146,7 +144,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme = ExtResource("4")
-step = 10.0
+step = 0.0
+value = 100.0
 tick_count = 11
 ticks_on_borders = true
 
@@ -219,5 +218,5 @@ theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 
 [connection signal="text_changed" from="UI/ColorRect/HBoxContainer/User_Input_Panel/TermInput" to="UI/ColorRect/HBoxContainer/User_Input_Panel/TermInput" method="_on_TermInput_text_changed"]
 [connection signal="text_submitted" from="UI/ColorRect/HBoxContainer/User_Input_Panel/TermInput" to="UI" method="_on_LineEdit_text_entered"]
-[connection signal="pressed" from="UI/ColorRect/HBoxContainer/User_Input_Panel/Button" to="UI" method="_on_Button_pressed"]
+[connection signal="pressed" from="UI/ColorRect/HBoxContainer/User_Input_Panel/Button" to="UI" method="_on_Start_Button_pressed"]
 [connection signal="value_changed" from="UI/ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider" to="UI" method="_on_timeslider_value_changed"]

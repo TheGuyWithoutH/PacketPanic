@@ -6,6 +6,10 @@ var start_node: int = -1
 var end_node: Utils.IPAddress
 var nodes: Array
 var links: Array
+var history: Array
+
+const Packet = preload("res://network/Packet.tscn")
+var idlePacket: Packet
 
 const LogicNode = preload("res://network/nodes/logic_node.tscn")
 const DeadNode = preload("res://network/nodes/dead_node.tscn")
@@ -15,7 +19,9 @@ const ClientNode = preload("res://network/nodes/client_node.tscn")
 const MirrorNode =  preload("res://network/nodes/mirror_node.tscn")
 const DnsNode =  preload("res://network/nodes/dns_node.tscn")
 
-func create(level: Dictionary, packet: Packet):
+signal finishGame(success: bool, error: String, history: Array)
+
+func create(level: Dictionary):
 	var nodes_list = level['nodes']
 	var i = 0
 	for node in nodes_list:
@@ -62,9 +68,11 @@ func create(level: Dictionary, packet: Packet):
 		add_child(linkObj)
 		linkObj.endTransfer.connect(_handleEndTransfer)
 		i += 1
-		
-	packet.position = nodes[start_node].position
-	print(packet.position)
+	
+	idlePacket = Packet.instantiate()
+	idlePacket.position = nodes[start_node].position
+	add_child(idlePacket)
+	print(idlePacket.position)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -82,12 +90,16 @@ func _handleStartTransfer(packet: Packet, link: int, node_id: int):
 	
 func _handleEndTransfer(packet: Packet, node: int, link: int):
 	print('end transfer')
+	history.append(nodes[node].position)
 	nodes[node].receivePacket(packet, link)
 
 # Method to call to start the game
 func startGame(packet: Packet):
-	print('start')
+	remove_child(idlePacket)
+	history.clear()
+	history.append(nodes[start_node].position)
+	packet.position = nodes[start_node].position
 	nodes[start_node].startGame(packet)
 
 func _endLevel(success: bool, error: String):
-	print('end: ' + error)
+	finishGame.emit(success, error, history)
