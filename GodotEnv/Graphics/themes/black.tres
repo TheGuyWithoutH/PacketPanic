@@ -1,0 +1,151 @@
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://bokk2oehtgs2h"]
+
+[ext_resource type="StyleBox" uid="uid://dqdi0oaghh7sl" path="res://Graphics/defstylebox.tres" id="1"]
+[ext_resource type="StyleBox" uid="uid://ccs5lke6gtlvx" path="res://Graphics/themes/black_stylebox.tres" id="2"]
+[ext_resource type="FontFile" uid="uid://c1o0i5fp0ji0x" path="res://Graphics/Fonts/Consolas.ttf" id="3"]
+[ext_resource type="FontFile" uid="uid://cc4wf7rp2sn3h" path="res://Graphics/Fonts/consolai.ttf" id="4"]
+[ext_resource type="FontFile" uid="uid://qe7j18gc73qf" path="res://Graphics/Fonts/CONSOLAB.TTF" id="5"]
+
+[sub_resource type="FontFile" id="2"]
+fallbacks = Array[Font]([ExtResource("5")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="3"]
+fallbacks = Array[Font]([ExtResource("4")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="4"]
+fallbacks = Array[Font]([ExtResource("4")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="FontFile" id="5"]
+fallbacks = Array[Font]([ExtResource("3")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[sub_resource type="StyleBoxFlat" id="1"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[resource]
+Button/colors/font_color = Color(0.88, 0.88, 0.88, 1)
+Button/colors/font_color_disabled = Color(0.9, 0.9, 0.9, 0.2)
+Button/colors/font_color_focus = Color(0.94, 0.94, 0.94, 1)
+Button/colors/font_color_hover = Color(0.94, 0.94, 0.94, 1)
+Button/colors/font_color_pressed = Color(1, 1, 1, 1)
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = null
+Button/styles/normal = ExtResource("1")
+Button/styles/pressed = null
+HBoxContainer/constants/separation = 4
+HSlider/icons/grabber = null
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = null
+HSlider/icons/tick = null
+HSlider/styles/grabber_area = null
+HSlider/styles/grabber_area_highlight = null
+HSlider/styles/slider = null
+LineEdit/colors/clear_button_color = Color(0.88, 0.88, 0.88, 1)
+LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
+LineEdit/colors/cursor_color = Color(0.94, 0.94, 0.94, 1)
+LineEdit/colors/font_color = Color(0.133333, 0.705882, 0.333333, 1)
+LineEdit/colors/font_color_selected = Color(0.133333, 0.705882, 0.333333, 1)
+LineEdit/colors/font_color_uneditable = Color(0.88, 0.88, 0.88, 0.5)
+LineEdit/colors/selection_color = Color(0.49, 0.49, 0.49, 1)
+LineEdit/constants/minimum_spaces = 12
+LineEdit/fonts/font = null
+LineEdit/icons/clear = null
+LineEdit/styles/focus = null
+LineEdit/styles/normal = ExtResource("1")
+LineEdit/styles/read_only = null
+RichTextLabel/colors/default_color = Color(0.133333, 0.705882, 0.333333, 1)
+RichTextLabel/colors/font_color_selected = Color(0.49, 0.49, 0.49, 1)
+RichTextLabel/colors/font_color_shadow = Color(0, 0, 0, 0)
+RichTextLabel/colors/selection_color = Color(0.1, 0.1, 1, 0.8)
+RichTextLabel/constants/line_separation = 1
+RichTextLabel/constants/shadow_as_outline = 0
+RichTextLabel/constants/shadow_offset_x = 1
+RichTextLabel/constants/shadow_offset_y = 1
+RichTextLabel/constants/table_hseparation = 3
+RichTextLabel/constants/table_vseparation = 3
+RichTextLabel/fonts/bold_font = SubResource("2")
+RichTextLabel/fonts/bold_italics_font = SubResource("3")
+RichTextLabel/fonts/italics_font = SubResource("4")
+RichTextLabel/fonts/mono_font = null
+RichTextLabel/fonts/normal_font = SubResource("5")
+RichTextLabel/styles/focus = null
+RichTextLabel/styles/normal = SubResource("1")
+TabBar/colors/font_color_bg = Color(0.69, 0.69, 0.69, 1)
+TabBar/colors/font_color_disabled = Color(0.9, 0.9, 0.9, 0.2)
+TabBar/colors/font_color_fg = Color(0.94, 0.94, 0.94, 1)
+TabBar/constants/hseparation = 4
+TabBar/constants/label_valign_bg = 2
+TabBar/constants/label_valign_fg = 0
+TabBar/constants/top_margin = 24
+TabBar/fonts/font = null
+TabBar/icons/close = null
+TabBar/icons/decrement = null
+TabBar/icons/decrement_highlight = null
+TabBar/icons/increment = null
+TabBar/icons/increment_highlight = null
+TabBar/styles/button = null
+TabBar/styles/button_pressed = null
+TabBar/styles/tab_bg = ExtResource("2")
+TabBar/styles/tab_disabled = null
+TabBar/styles/tab_fg = null
+TabContainer/colors/font_color_bg = Color(0.533333, 0.533333, 0.533333, 1)
+TabContainer/colors/font_color_disabled = Color(0.901961, 0.901961, 0.901961, 0.2)
+TabContainer/colors/font_color_fg = Color(0.819608, 0.819608, 0.819608, 1)
+TabContainer/constants/hseparation = 0
+TabContainer/constants/label_valign_bg = 0
+TabContainer/constants/label_valign_fg = 0
+TabContainer/constants/side_margin = 8
+TabContainer/constants/top_margin = 24
+TabContainer/fonts/font = null
+TabContainer/icons/decrement = null
+TabContainer/icons/decrement_highlight = null
+TabContainer/icons/increment = null
+TabContainer/icons/increment_highlight = null
+TabContainer/icons/menu = null
+TabContainer/icons/menu_highlight = null
+TabContainer/styles/panel = ExtResource("1")
+TabContainer/styles/tab_bg = ExtResource("1")
+TabContainer/styles/tab_disabled = null
+TabContainer/styles/tab_fg = ExtResource("1")
