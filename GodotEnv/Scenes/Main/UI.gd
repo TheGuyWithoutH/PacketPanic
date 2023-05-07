@@ -1,10 +1,19 @@
 extends ReferenceRect
 
+const Packet = preload("res://network/Packet.tscn")
+
 var cmdindex = 0;
 var sipreg = RegEx.new()
 var dipreg = RegEx.new()
 var cmdlist = 'res://resources/cmdlist.txt'
 var entryarray = ["end of commands array"]
+var level: BasicLevel
+var currentPacket: Packet
+var lastHistory: Array
+
+# Right now for default scene, when menu is done use setLevel instead
+@export var levelScene: PackedScene
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	dipreg.compile("set_dest_IP\\((([0-9]{1,3}\\.){3}[0-9]{1,3})\\)")
@@ -12,6 +21,14 @@ func _ready():
 	$ColorRect/HBoxContainer/User_Input_Panel/TermInput.text = "> "
 	$ColorRect/HBoxContainer/User_Input_Panel/TermInput.caret_column = 2
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeval.text = "%d" % $ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.value
+	level = levelScene.instantiate()
+	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/GameBoard/SubViewportContainer/LevelView.add_child(level)
+	level.endLevel.connect(endLevel)
+	currentPacket = Packet.instantiate()
+
+func setLevel(newLevel: PackedScene):
+	level = newLevel.instantiate()
+	level.endLevel.connect(endLevel)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -60,11 +77,24 @@ func _on_LineEdit_text_entered(new_text):
 			$ColorRect/HBoxContainer/User_Input_Panel/Packet2.print_packet()
 
 func _on_timeslider_value_changed(value):
-	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeval.text = "%d" % value
+	if(lastHistory.size() > 0):
+		var index = floor((lastHistory.size() - 1) * value / 100)
+		var linkSize = 100 / (lastHistory.size() - 1)
+		$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeval.text = "%d" % index
+		
+		if(index == lastHistory.size() - 1):
+			currentPacket.position = lastHistory[index]
+		else:
+			currentPacket.position = lastHistory[index].lerp(lastHistory[index + 1], (value - (index * linkSize)) / linkSize)
 
 
-func _on_Button_pressed():
-	pass
+func _on_Start_Button_pressed():
+	print("start")
+	lastHistory.clear()
+	currentPacket.setDestination('185.25.195.105')
+	currentPacket.setMac('5E:FF:56:A2:AF:03')
+	currentPacket.setPort(80)
+	level.startLevel(currentPacket)
 	
 func is_command(cmd):
 	cmd += " "
@@ -85,3 +115,8 @@ func terminal_exec(cmd,arg):
 		_: 
 			return "\ncaught " + cmd + " with arguments : " + arg
 	
+func endLevel(success: bool, error: String, history: Array):
+	print('end: ' + error)
+	lastHistory = history
+	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.tick_count = lastHistory.size()
+	pass

@@ -1,0 +1,88 @@
+{
+  "nodes": [
+	{
+	  "type": "start",
+	  "position": [1683, 1597]
+	},
+	{
+	  "type": "server",
+	  "position": [1483, 1446],
+	  "out_num": 2,
+	  "addr": "185.25.195.104",
+	  "http_method": "GET"
+	},
+	{
+	  "type": "dns",
+	  "position": [1588, 1268],
+	  "out_num": 1,
+	  "addr": "185.25.195.105",
+	  "translation": "185.25.195.104"
+	},
+	{
+	  "type": "dead",
+	  "position": [1356, 1389],
+	  "out_num": 1
+	},
+	{
+	  "type": "server",
+	  "position": [1311, 1237],
+	  "out_num": 2,
+	  "addr": "185.25.195.104"
+	},
+	{
+	  "type": "logic",
+	  "position": [1383, 1100],
+	  "out_num": 3,
+	  "shifting": 2
+	},
+	{
+	  "type": "start",
+	  "position": [1111, 954],
+	  "out_num": 1
+	},
+	{
+	  "type": "dead",
+	  "position": [1605, 1050],
+	  "out_num": 1
+	},
+	{
+	  "type": "start",
+	  "position": [2340, 1770],
+	  "out_num": 1
+	},
+	{
+	  "type": "logic",
+	  "position": [2330, 1550],
+	  "out_num": 4
+	},
+	{
+	  "type": "server",
+	  "position": [2560, 1693],
+	  "out_num": 1,
+	  "addr": "185.25.195.104"
+	},
+	{
+	  "type": "dead",
+	  "position": [2110, 1420],
+	  "out_num": 1
+	},
+	{
+	  "type": "dead",
+	  "position": [2380, 1350],
+	  "out_num": 1
+	}
+  ],
+  "links": [
+	[0, 0, 1, 0, 5],
+	[1, 1, 2, 0, 5],
+	[3, 0, 4, 0, 5],
+	[4, 1, 5, 0, 5],
+	[5, 1, 6, 0, 5],
+	[5, 2, 7, 0, 5],
+	[8, 0, 9, 0, 5],
+	[9, 3, 10, 0, 5],
+	[9, 1, 11, 0, 5],
+	[9, 2, 12, 0, 5]
+  ],
+  "start_node": 6
+}

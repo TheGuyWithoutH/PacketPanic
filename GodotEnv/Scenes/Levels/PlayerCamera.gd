@@ -5,7 +5,7 @@ var allowDrag = true
 var _previousPosition: Vector2 = Vector2(0, 0);
 var _moveCamera: bool = false;
 
-func _unhandled_input(event: InputEvent):
+func _input(event: InputEvent):
 	if !allowDrag:
 		_moveCamera = false;
 	elif event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT:
