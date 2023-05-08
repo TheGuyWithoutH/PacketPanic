@@ -1,21 +1,45 @@
 extends ReferenceRect
 
 var cmdindex = 0;
-var sipreg = RegEx.new()
-var dipreg = RegEx.new()
+var func_reg = RegEx.new()
+var command_reg = RegEx.new()
 var cmdlist = 'res://resources/cmdlist.txt'
 var entryarray = ["end of commands array"]
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	dipreg.compile("set_dest_IP\\((([0-9]{1,3}\\.){3}[0-9]{1,3})\\)")
-	sipreg.compile("set_src_IP\\((([0-9]{1,3}\\.){3}[0-9]{1,3})\\)")
+	func_reg.compile("(\\w+)\\((.*)\\)")
+	command_reg.compile("(\\w+) (.*)")
 	$ColorRect/HBoxContainer/User_Input_Panel/TermInput.text = "> "
 	$ColorRect/HBoxContainer/User_Input_Panel/TermInput.caret_column = 2
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeval.text = "%d" % $ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.value
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+
+func _on_LineEdit_text_entered(new_text):
+	if new_text.length() > 2:
+		entryarray.append(new_text)
+		cmdindex = entryarray.size()
+		$ColorRect/HBoxContainer/User_Input_Panel/Terminal.text += "\n" + new_text
+		$ColorRect/HBoxContainer/User_Input_Panel/TermInput.clear()
+		$ColorRect/HBoxContainer/User_Input_Panel/TermInput.text = "> "
+		$ColorRect/HBoxContainer/User_Input_Panel/TermInput.caret_column = 2
+		new_text = new_text.substr(2)
+		var cmd_funct = func_reg.search(new_text)
+		var cmd_command = command_reg.search(new_text)
+		if cmd_funct:
+			print("found funct "+ cmd_funct.get_string(1) + " with arg : " + cmd_funct.get_string(2))
+		elif cmd_command:
+			var prog_name = cmd_command.get_string(1)
+			var args = cmd_command.get_string(2)
+			print("found command "+ prog_name)
+			if is_from(prog_name,"res://resources/cmdlist.txt"):
+				$ColorRect/HBoxContainer/User_Input_Panel/Terminal.text += terminal_exec(prog_name,args)
+			else:
+				print("error : program \"" + prog_name + "\" not found.")
+		else :
+			print("error : \"" + new_text + "\" not recognized.")
+			
+func _on_timeslider_value_changed(value):
+	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeval.text = "%d" % value
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
@@ -33,52 +57,21 @@ func _input(event):
 					cmdindex = entryarray.size()
 					$ColorRect/HBoxContainer/User_Input_Panel/TermInput.text = "> "
 			
-func _on_LineEdit_text_entered(new_text):
-	if new_text.length() > 2:
-		entryarray.append(new_text)
-		cmdindex = entryarray.size()
-		
-		$ColorRect/HBoxContainer/User_Input_Panel/TermInput.clear()
-		$ColorRect/HBoxContainer/User_Input_Panel/TermInput.text = "> "
-		$ColorRect/HBoxContainer/User_Input_Panel/TermInput.caret_column = 2
-		
-		var cmd_idx = is_command(new_text)
-		if cmd_idx == null:
-			$ColorRect/HBoxContainer/User_Input_Panel/Terminal.text += "\n" + new_text
-			$ColorRect/HBoxContainer/User_Input_Panel/Terminal.text += "\nCommand not found : %s " % new_text.substr(2).split(" ")[0]
-		else :
-			$ColorRect/HBoxContainer/User_Input_Panel/Terminal.text += "\n" + new_text
-			$ColorRect/HBoxContainer/User_Input_Panel/Terminal.text += terminal_exec(cmd_idx,new_text)
-		
-		var dip = dipreg.search(new_text) # search for destination ip address
-		if dip:
-			$ColorRect/HBoxContainer/Game_Window/NetWork_Window/GameBoard/SubViewportContainer/SubViewport/BasicLevel.packet.setDestination('185.25.195.105')
-			print("set dest")
-		var sip = sipreg.search(new_text)
-		if sip:
-			$ColorRect/HBoxContainer/User_Input_Panel/Packet2.packet.src_ip = sip.get_string(1)
-			$ColorRect/HBoxContainer/User_Input_Panel/Packet2.print_packet()
-
-func _on_timeslider_value_changed(value):
-	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeval.text = "%d" % value
-
 
 func _on_Button_pressed():
-	pass
+	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/GameBoard/SubViewportContainer/SubViewport/BasicLevel.start()
 	
-func is_command(cmd):
-	cmd += " "
-	var f = FileAccess.open(cmdlist, FileAccess.READ)
+func is_from(word,file):
+	var f = FileAccess.open(file, FileAccess.READ)
 	while not f.eof_reached(): # iterate through all lines until the end of file is reached
 		var line = f.get_line()
-		if line + " " == cmd.substr(2,line.length()+1):
+		if line == word:
 			f.close()
-			return line
+			return true
 	f.close()
-	return null
+	return false
 	
 func terminal_exec(cmd,arg):
-	arg = arg.substr(arg.find(cmd) + cmd.length()+1)
 	match cmd:
 		"netcat":
 			return "\nYou're a kitty ! : " + arg
