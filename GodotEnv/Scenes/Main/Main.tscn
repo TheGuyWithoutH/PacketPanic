@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dsido5vwwogt3"]
+[gd_scene load_steps=19 format=3 uid="uid://dsido5vwwogt3"]
 
 [ext_resource type="Texture2D" uid="uid://bq2plhlptb85c" path="res://Graphics/buttons/image_#g3869_btn.png" id="1"]
 [ext_resource type="Script" path="res://Scenes/Main/UI.gd" id="2"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://Scenes/Main/Documentation.gd" id="12"]
 [ext_resource type="Theme" path="res://Graphics/themes/BaseTheme.tres" id="13"]
 [ext_resource type="Script" path="res://Scenes/Main/Packet2.gd" id="14"]
+[ext_resource type="PackedScene" uid="uid://bw7td8vmoma38" path="res://assets/GUI_Boxes/LEVELSelect.tscn" id="16_ik5lf"]
 
 [sub_resource type="GDScript" id="1"]
 script/source = "extends LineEdit
@@ -216,7 +217,22 @@ visible = false
 layout_mode = 2
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
 
+[node name="Button" type="Button" parent="UI/ColorRect/HBoxContainer/Game_Window/Documentation/Game"]
+layout_mode = 1
+offset_right = 119.0
+offset_bottom = 28.0
+text = "Level Selector"
+
+[node name="Levelselector" parent="UI" instance=ExtResource("16_ik5lf")]
+layout_mode = 1
+offset_left = 113.0
+offset_top = 49.0
+offset_right = 113.0
+offset_bottom = 49.0
+scale = Vector2(0.8, 0.8)
+
 [connection signal="text_changed" from="UI/ColorRect/HBoxContainer/User_Input_Panel/TermInput" to="UI/ColorRect/HBoxContainer/User_Input_Panel/TermInput" method="_on_TermInput_text_changed"]
 [connection signal="text_submitted" from="UI/ColorRect/HBoxContainer/User_Input_Panel/TermInput" to="UI" method="_on_LineEdit_text_entered"]
 [connection signal="pressed" from="UI/ColorRect/HBoxContainer/User_Input_Panel/Button" to="UI" method="_on_Start_Button_pressed"]
 [connection signal="value_changed" from="UI/ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider" to="UI" method="_on_timeslider_value_changed"]
+[connection signal="pressed" from="UI/ColorRect/HBoxContainer/Game_Window/Documentation/Game/Button" to="UI" method="_on_button_levelselector"]

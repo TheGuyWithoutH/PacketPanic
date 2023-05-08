@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://bw7td8vmoma38"]
+
+[ext_resource type="Script" path="res://assets/GUI_Boxes/LEVELSelect.gd" id="1_bar2t"]
+[ext_resource type="Theme" uid="uid://bokk2oehtgs2h" path="res://Graphics/themes/black.tres" id="2_03cdy"]
+[ext_resource type="LabelSettings" uid="uid://c0sceca1rpre2" path="res://Graphics/Fonts/Label_def.tres" id="2_nyn8d"]
+[ext_resource type="PackedScene" uid="uid://cl2gfe5a5n2vy" path="res://assets/GUI_Boxes/LevelBar.tscn" id="3_b3q23"]
+[ext_resource type="JSON" path="res://Scenes/Levels/level1/level1.json" id="5_i6ruy"]
+[ext_resource type="JSON" path="res://Scenes/Levels/level2/level2.json" id="5_nw8hl"]
+[ext_resource type="JSON" path="res://Scenes/Levels/level3/level3.json" id="6_wg31l"]
+
+[node name="Node2D" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.403922, 0.403922, 0.403922, 1)
+script = ExtResource("1_bar2t")
+
+[node name="Level_popup" type="MarginContainer" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_03cdy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Level_popup"]
+clip_contents = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Level_popup/VBoxContainer"]
+layout_mode = 2
+
+[node name="Popup_text" type="Label" parent="Level_popup/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_03cdy")
+text = "Choose level."
+label_settings = ExtResource("2_nyn8d")
+
+[node name="Button" type="Button" parent="Level_popup/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+text = "X"
+
+[node name="MenuBar" type="ScrollContainer" parent="Level_popup/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_03cdy")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Level_popup/VBoxContainer/MenuBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="Panel" parent="Level_popup/VBoxContainer/MenuBar/VBoxContainer" instance=ExtResource("3_b3q23")]
+layout_mode = 2
+levelname = "LEVEL 1"
+leveljson = ExtResource("5_i6ruy")
+
+[node name="Panel2" parent="Level_popup/VBoxContainer/MenuBar/VBoxContainer" instance=ExtResource("3_b3q23")]
+layout_mode = 2
+levelname = "LEVEL 2"
+leveljson = ExtResource("5_nw8hl")
+
+[node name="Panel3" parent="Level_popup/VBoxContainer/MenuBar/VBoxContainer" instance=ExtResource("3_b3q23")]
+layout_mode = 2
+levelname = "LEVEL 3"
+leveljson = ExtResource("6_wg31l")
+
+[connection signal="pressed" from="Level_popup/VBoxContainer/HBoxContainer/Button" to="." method="_on_close_pressed"]

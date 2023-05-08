@@ -3,8 +3,8 @@ extends ReferenceRect
 const Packet = preload("res://network/Packet.tscn")
 
 var cmdindex = 0;
-var sipreg = RegEx.new()
-var dipreg = RegEx.new()
+var func_reg = RegEx.new()
+var command_reg = RegEx.new()
 var cmdlist = 'res://resources/cmdlist.txt'
 var entryarray = ["end of commands array"]
 var level: BasicLevel
@@ -16,8 +16,8 @@ var lastHistory: Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	dipreg.compile("set_dest_IP\\((([0-9]{1,3}\\.){3}[0-9]{1,3})\\)")
-	sipreg.compile("set_src_IP\\((([0-9]{1,3}\\.){3}[0-9]{1,3})\\)")
+	func_reg.compile("(\\w+)\\((.*)\\)")
+	command_reg.compile("(\\w+) *(.*)")
 	$ColorRect/HBoxContainer/User_Input_Panel/TermInput.text = "> "
 	$ColorRect/HBoxContainer/User_Input_Panel/TermInput.caret_column = 2
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeval.text = "%d" % $ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.value
@@ -54,27 +54,31 @@ func _on_LineEdit_text_entered(new_text):
 	if new_text.length() > 2:
 		entryarray.append(new_text)
 		cmdindex = entryarray.size()
-		
+		$ColorRect/HBoxContainer/User_Input_Panel/Terminal.text += "\n" + new_text
 		$ColorRect/HBoxContainer/User_Input_Panel/TermInput.clear()
 		$ColorRect/HBoxContainer/User_Input_Panel/TermInput.text = "> "
 		$ColorRect/HBoxContainer/User_Input_Panel/TermInput.caret_column = 2
-		
-		var cmd_idx = is_command(new_text)
-		if cmd_idx == null:
-			$ColorRect/HBoxContainer/User_Input_Panel/Terminal.text += "\n" + new_text
-			$ColorRect/HBoxContainer/User_Input_Panel/Terminal.text += "\nCommand not found : %s " % new_text.substr(2).split(" ")[0]
+		new_text = new_text.substr(2)
+		var cmd_funct = func_reg.search(new_text)
+		var cmd_command = command_reg.search(new_text)
+		if cmd_funct:
+			var funct_name = cmd_funct.get_string(1)
+			var args = cmd_funct.get_string(2)
+			print("found funct "+ funct_name + " with arg : " + args)
+			if is_from(funct_name,"res://resources/funct_list.txt"):
+				$ColorRect/HBoxContainer/User_Input_Panel/Terminal.text += terminal_exec(funct_name,args)
+			else:
+				print("error : program \"" + funct_name + "\" not found.")
+		elif cmd_command:
+			var prog_name = cmd_command.get_string(1)
+			var args = cmd_command.get_string(2)
+			print("found command "+ prog_name)
+			if is_from(prog_name,"res://resources/cmdlist.txt"):
+				$ColorRect/HBoxContainer/User_Input_Panel/Terminal.text += terminal_exec(prog_name,args)
+			else:
+				print("error : program \"" + prog_name + "\" not found.")
 		else :
-			$ColorRect/HBoxContainer/User_Input_Panel/Terminal.text += "\n" + new_text
-			$ColorRect/HBoxContainer/User_Input_Panel/Terminal.text += terminal_exec(cmd_idx,new_text)
-		
-		var dip = dipreg.search(new_text) # search for destination ip address
-		if dip:
-			$ColorRect/HBoxContainer/Game_Window/NetWork_Window/GameBoard/SubViewportContainer/SubViewport/BasicLevel.packet.setDestination('185.25.195.105')
-			print("set dest")
-		var sip = sipreg.search(new_text)
-		if sip:
-			$ColorRect/HBoxContainer/User_Input_Panel/Packet2.packet.src_ip = sip.get_string(1)
-			$ColorRect/HBoxContainer/User_Input_Panel/Packet2.print_packet()
+			print("error : \"" + new_text + "\" not recognized.")
 
 func _on_timeslider_value_changed(value):
 	if(lastHistory.size() > 0):
@@ -96,27 +100,57 @@ func _on_Start_Button_pressed():
 	currentPacket.setPort(80)
 	level.startLevel(currentPacket)
 	
-func is_command(cmd):
-	cmd += " "
-	var f = FileAccess.open(cmdlist, FileAccess.READ)
+func is_from(word,file):
+	var f = FileAccess.open(file, FileAccess.READ)
 	while not f.eof_reached(): # iterate through all lines until the end of file is reached
 		var line = f.get_line()
-		if line + " " == cmd.substr(2,line.length()+1):
+		if line == word:
 			f.close()
-			return line
+			return true
 	f.close()
-	return null
-	
-func terminal_exec(cmd,arg):
-	arg = arg.substr(arg.find(cmd) + cmd.length()+1)
-	match cmd:
-		"netcat":
-			return "\nYou're a kitty ! : " + arg
-		_: 
-			return "\ncaught " + cmd + " with arguments : " + arg
+	return false
+
 	
 func endLevel(success: bool, error: String, history: Array):
 	print('end: ' + error)
 	lastHistory = history
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.tick_count = lastHistory.size()
 	pass
+
+
+func _on_button_levelselector():
+	$Levelselector.position = Vector2(113,49)
+	
+	
+func terminal_exec(cmd,arg):
+	match cmd:
+		"netcat":
+			return "\nYou're a kitty ! : " + arg
+		"set_src_ip":
+			
+			return " "
+		"set_dest_ip":
+			$ColorRect/HBoxContainer/User_Input_Panel/Packet2.editpacket.setDestination(arg)
+			return " "
+		"set_port":
+			
+			return " "
+		"dns_addr":
+			
+			return " "
+		"HTTP_method":
+			
+			return " "
+		"mac_addr":
+			
+			return " "
+		"use_vpn":
+			
+			return " "
+		"encrypt":
+			
+			return " "
+		_: 
+			return "\ncaught " + cmd + " with arguments : " + arg
+	
+

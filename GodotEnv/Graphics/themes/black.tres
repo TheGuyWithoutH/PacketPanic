@@ -1,10 +1,26 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://bokk2oehtgs2h"]
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://bokk2oehtgs2h"]
 
 [ext_resource type="StyleBox" path="res://Graphics/defstylebox.tres" id="1"]
-[ext_resource type="StyleBox" path="res://Graphics/themes/black_stylebox.tres" id="2"]
+[ext_resource type="StyleBox" uid="uid://fkn63lj8kvwj" path="res://Graphics/themes/black_stylebox.tres" id="2"]
 [ext_resource type="FontFile" uid="uid://c1o0i5fp0ji0x" path="res://Graphics/Fonts/Consolas.ttf" id="3"]
 [ext_resource type="FontFile" uid="uid://cc4wf7rp2sn3h" path="res://Graphics/Fonts/consolai.ttf" id="4"]
 [ext_resource type="FontFile" uid="uid://qe7j18gc73qf" path="res://Graphics/Fonts/CONSOLAB.TTF" id="5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_21mw6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ppsqa"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.215686, 0.215686, 0.215686, 1)
+border_color = Color(0.8, 0, 0.8, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 10
+anti_aliasing = false
 
 [sub_resource type="FontFile" id="2"]
 fallbacks = Array[Font]([ExtResource("5")])
@@ -61,6 +77,8 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="ImageTexture" id="ImageTexture_vk3hd"]
+
 [resource]
 Button/colors/font_color = Color(0.88, 0.88, 0.88, 1)
 Button/colors/font_color_disabled = Color(0.9, 0.9, 0.9, 0.2)
@@ -79,9 +97,20 @@ HSlider/icons/grabber = null
 HSlider/icons/grabber_disabled = null
 HSlider/icons/grabber_highlight = null
 HSlider/icons/tick = null
-HSlider/styles/grabber_area = null
-HSlider/styles/grabber_area_highlight = null
-HSlider/styles/slider = null
+HSlider/styles/grabber_area = ExtResource("2")
+HSlider/styles/grabber_area_highlight = ExtResource("2")
+HSlider/styles/slider = ExtResource("2")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 0
+Label/constants/shadow_offset_y = 0
+Label/constants/shadow_outline_size = 0
+Label/font_sizes/font_size = 14
+Label/fonts/font = ExtResource("3")
+Label/styles/normal = SubResource("StyleBoxEmpty_21mw6")
 LineEdit/colors/clear_button_color = Color(0.88, 0.88, 0.88, 1)
 LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
 LineEdit/colors/cursor_color = Color(0.94, 0.94, 0.94, 1)
@@ -95,6 +124,11 @@ LineEdit/icons/clear = null
 LineEdit/styles/focus = null
 LineEdit/styles/normal = ExtResource("1")
 LineEdit/styles/read_only = null
+MarginContainer/constants/margin_bottom = 3
+MarginContainer/constants/margin_left = 3
+MarginContainer/constants/margin_right = 3
+MarginContainer/constants/margin_top = 3
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_ppsqa")
 RichTextLabel/colors/default_color = Color(0.133333, 0.705882, 0.333333, 1)
 RichTextLabel/colors/font_color_selected = Color(0.49, 0.49, 0.49, 1)
 RichTextLabel/colors/font_color_shadow = Color(0, 0, 0, 0)
@@ -112,6 +146,7 @@ RichTextLabel/fonts/mono_font = null
 RichTextLabel/fonts/normal_font = SubResource("5")
 RichTextLabel/styles/focus = null
 RichTextLabel/styles/normal = SubResource("1")
+ScrollContainer/styles/panel = ExtResource("2")
 TabBar/colors/font_color_bg = Color(0.69, 0.69, 0.69, 1)
 TabBar/colors/font_color_disabled = Color(0.9, 0.9, 0.9, 0.2)
 TabBar/colors/font_color_fg = Color(0.94, 0.94, 0.94, 1)
@@ -149,3 +184,14 @@ TabContainer/styles/panel = ExtResource("1")
 TabContainer/styles/tab_bg = ExtResource("1")
 TabContainer/styles/tab_disabled = null
 TabContainer/styles/tab_fg = ExtResource("1")
+VScrollBar/icons/decrement = SubResource("ImageTexture_vk3hd")
+VScrollBar/icons/decrement_highlight = SubResource("ImageTexture_vk3hd")
+VScrollBar/icons/decrement_pressed = SubResource("ImageTexture_vk3hd")
+VScrollBar/icons/increment = SubResource("ImageTexture_vk3hd")
+VScrollBar/icons/increment_highlight = SubResource("ImageTexture_vk3hd")
+VScrollBar/icons/increment_pressed = SubResource("ImageTexture_vk3hd")
+VScrollBar/styles/grabber = null
+VScrollBar/styles/grabber_highlight = null
+VScrollBar/styles/grabber_pressed = null
+VScrollBar/styles/scroll = null
+VScrollBar/styles/scroll_focus = null

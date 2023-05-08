@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://cl2gfe5a5n2vy"]
+
+[ext_resource type="Theme" uid="uid://bokk2oehtgs2h" path="res://Graphics/themes/black.tres" id="1_nxkxq"]
+[ext_resource type="Script" path="res://assets/GUI_Boxes/LevelBar.gd" id="2_02aj1"]
+[ext_resource type="LabelSettings" uid="uid://c0sceca1rpre2" path="res://Graphics/Fonts/Label_def.tres" id="3_ol1sx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8d8fy"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 10
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_26h3s"]
+size = Vector2(10, 10)
+
+[node name="Panel" type="Panel"]
+custom_minimum_size = Vector2(30, 30)
+offset_right = 151.0
+offset_bottom = 20.0
+size_flags_vertical = 4
+theme = ExtResource("1_nxkxq")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8d8fy")
+script = ExtResource("2_02aj1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_26h3s")
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "Text"
+label_settings = ExtResource("3_ol1sx")
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.403922, 0.384314, 0.694118, 1)
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "PLAY"
+
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]
