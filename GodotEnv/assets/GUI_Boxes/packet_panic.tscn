@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb288x30rrgyc"]
+
+[ext_resource type="Theme" uid="uid://bokk2oehtgs2h" path="res://Graphics/themes/black.tres" id="1_1eiya"]
+[ext_resource type="Script" path="res://assets/GUI_Boxes/packet_panic.gd" id="2_ai532"]
+[ext_resource type="FontFile" uid="uid://btenskujt1ylf" path="res://Graphics/Fonts/CONSOLA.TTF" id="2_w5lq8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_o3df4"]
+line_spacing = 0.0
+font = ExtResource("2_w5lq8")
+font_size = 13
+font_color = Color(1, 0, 0, 1)
+
+[node name="Packet_Panic" type="Panel"]
+clip_contents = true
+offset_right = 185.0
+offset_bottom = 100.0
+theme = ExtResource("1_1eiya")
+script = ExtResource("2_ai532")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PACKET PANIC !"
+label_settings = SubResource("LabelSettings_o3df4")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_1eiya")
+theme_override_font_sizes/font_size = 12
+text = "X"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_1eiya")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

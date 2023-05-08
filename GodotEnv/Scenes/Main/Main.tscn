@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dsido5vwwogt3"]
+[gd_scene load_steps=20 format=3 uid="uid://dsido5vwwogt3"]
 
 [ext_resource type="Texture2D" uid="uid://bq2plhlptb85c" path="res://Graphics/buttons/image_#g3869_btn.png" id="1"]
 [ext_resource type="Script" path="res://Scenes/Main/UI.gd" id="2"]
@@ -16,6 +16,7 @@
 [ext_resource type="Theme" path="res://Graphics/themes/BaseTheme.tres" id="13"]
 [ext_resource type="Script" path="res://Scenes/Main/Packet2.gd" id="14"]
 [ext_resource type="PackedScene" uid="uid://bw7td8vmoma38" path="res://assets/GUI_Boxes/LEVELSelect.tscn" id="16_ik5lf"]
+[ext_resource type="PackedScene" uid="uid://cb288x30rrgyc" path="res://assets/GUI_Boxes/packet_panic.tscn" id="17_cotm5"]
 
 [sub_resource type="GDScript" id="1"]
 script/source = "extends LineEdit
@@ -225,11 +226,26 @@ text = "Level Selector"
 
 [node name="Levelselector" parent="UI" instance=ExtResource("16_ik5lf")]
 layout_mode = 1
-offset_left = 113.0
-offset_top = 49.0
-offset_right = 113.0
-offset_bottom = 49.0
+offset_left = 120.0
+offset_top = 675.0
+offset_right = 120.0
+offset_bottom = 675.0
 scale = Vector2(0.8, 0.8)
+
+[node name="Packet_Panic" parent="UI" instance=ExtResource("17_cotm5")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -212.5
+offset_top = -113.5
+offset_right = 212.5
+offset_bottom = 113.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(1431.5, 5.5)
 
 [connection signal="text_changed" from="UI/ColorRect/HBoxContainer/User_Input_Panel/TermInput" to="UI/ColorRect/HBoxContainer/User_Input_Panel/TermInput" method="_on_TermInput_text_changed"]
 [connection signal="text_submitted" from="UI/ColorRect/HBoxContainer/User_Input_Panel/TermInput" to="UI" method="_on_LineEdit_text_entered"]

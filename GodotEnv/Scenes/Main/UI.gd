@@ -25,6 +25,16 @@ func _ready():
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/GameBoard/SubViewportContainer/LevelView.add_child(level)
 	level.endLevel.connect(endLevel)
 	currentPacket = Packet.instantiate()
+	$Levelselector.position = Vector2(113,49)
+	$Packet_Panic.position = Vector2(1000,1000)
+	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel").lvlselected.connect(_on_lvl_selected)
+	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel2").lvlselected.connect(_on_lvl_selected)
+	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel3").lvlselected.connect(_on_lvl_selected)
+	setLevel(load("res://Scenes/Levels/level1/Level1.tscn"))
+	
+func _on_lvl_selected(levelscn: PackedScene):
+	setLevel(levelscn)
+	print("selected level : "+ str(levelscn))
 
 func setLevel(newLevel: PackedScene):
 	level = newLevel.instantiate()
@@ -115,6 +125,11 @@ func endLevel(success: bool, error: String, history: Array):
 	print('end: ' + error)
 	lastHistory = history
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.tick_count = lastHistory.size()
+	if(success):
+		print("yaaaaay")
+	else:
+		$Packet_Panic.position = Vector2(578,327)
+		$Packet_Panic/MarginContainer/VBoxContainer/RichTextLabel.text = "error : "+ error
 	pass
 
 
@@ -127,30 +142,40 @@ func terminal_exec(cmd,arg):
 		"netcat":
 			return "\nYou're a kitty ! : " + arg
 		"set_src_ip":
-			
+			currentPacket.setSource(arg)
 			return " "
 		"set_dest_ip":
-			$ColorRect/HBoxContainer/User_Input_Panel/Packet2.editpacket.setDestination(arg)
+			currentPacket.setDestination(arg)
 			return " "
 		"set_port":
-			
+			currentPacket.setPort(str_to_var(arg))
 			return " "
 		"dns_addr":
-			
+			print("dns adress not implemented")
 			return " "
 		"HTTP_method":
-			
+			currentPacket.setHTTPMethod(arg)
 			return " "
 		"mac_addr":
-			
+			currentPacket.setMac(arg)
 			return " "
 		"use_vpn":
-			
+			currentPacket.setVPN(arg)
 			return " "
 		"encrypt":
-			
+			currentPacket.encryption = arg
 			return " "
 		_: 
-			return "\ncaught " + cmd + " with arguments : " + arg
+			return "\n" + cmd + "not implemented ," + arg
+	print_packet_info()
+	
+func print_packet_info():
+	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text = "Packet :"
+	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nsrc_ip :" + currentPacket.src_addr
+	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\ndest_ip :" + currentPacket.dst_addr
+	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nport :" + str(currentPacket.port)
+	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nmac_addr :" + str(currentPacket.mac_addr)
+	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nHTTP_meth :" + str(currentPacket.http_method)
+	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nencryption :" + currentPacket.encryption
 	
 

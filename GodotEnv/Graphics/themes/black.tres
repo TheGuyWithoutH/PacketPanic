@@ -1,12 +1,24 @@
-[gd_resource type="Theme" load_steps=14 format=3 uid="uid://bokk2oehtgs2h"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://bokk2oehtgs2h"]
 
 [ext_resource type="StyleBox" path="res://Graphics/defstylebox.tres" id="1"]
+[ext_resource type="FontFile" uid="uid://btenskujt1ylf" path="res://Graphics/Fonts/CONSOLA.TTF" id="1_igd1c"]
 [ext_resource type="StyleBox" uid="uid://fkn63lj8kvwj" path="res://Graphics/themes/black_stylebox.tres" id="2"]
 [ext_resource type="FontFile" uid="uid://c1o0i5fp0ji0x" path="res://Graphics/Fonts/Consolas.ttf" id="3"]
 [ext_resource type="FontFile" uid="uid://cc4wf7rp2sn3h" path="res://Graphics/Fonts/consolai.ttf" id="4"]
 [ext_resource type="FontFile" uid="uid://qe7j18gc73qf" path="res://Graphics/Fonts/CONSOLAB.TTF" id="5"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_21mw6"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cgb6c"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.184314, 0.184314, 0.184314, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ppsqa"]
 content_margin_left = 0.0
@@ -76,6 +88,7 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+anti_aliasing = false
 
 [sub_resource type="ImageTexture" id="ImageTexture_vk3hd"]
 
@@ -85,8 +98,8 @@ Button/colors/font_color_disabled = Color(0.9, 0.9, 0.9, 0.2)
 Button/colors/font_color_focus = Color(0.94, 0.94, 0.94, 1)
 Button/colors/font_color_hover = Color(0.94, 0.94, 0.94, 1)
 Button/colors/font_color_pressed = Color(1, 1, 1, 1)
-Button/constants/hseparation = 2
-Button/fonts/font = null
+Button/constants/hseparation = 0
+Button/fonts/font = ExtResource("1_igd1c")
 Button/styles/disabled = null
 Button/styles/focus = null
 Button/styles/hover = null
@@ -110,7 +123,7 @@ Label/constants/shadow_offset_y = 0
 Label/constants/shadow_outline_size = 0
 Label/font_sizes/font_size = 14
 Label/fonts/font = ExtResource("3")
-Label/styles/normal = SubResource("StyleBoxEmpty_21mw6")
+Label/styles/normal = ExtResource("1")
 LineEdit/colors/clear_button_color = Color(0.88, 0.88, 0.88, 1)
 LineEdit/colors/clear_button_color_pressed = Color(1, 1, 1, 1)
 LineEdit/colors/cursor_color = Color(0.94, 0.94, 0.94, 1)
@@ -128,6 +141,7 @@ MarginContainer/constants/margin_bottom = 3
 MarginContainer/constants/margin_left = 3
 MarginContainer/constants/margin_right = 3
 MarginContainer/constants/margin_top = 3
+Panel/styles/panel = SubResource("StyleBoxFlat_cgb6c")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_ppsqa")
 RichTextLabel/colors/default_color = Color(0.133333, 0.705882, 0.333333, 1)
 RichTextLabel/colors/font_color_selected = Color(0.49, 0.49, 0.49, 1)
