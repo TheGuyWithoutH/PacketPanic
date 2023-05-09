@@ -108,6 +108,7 @@ func startGame(packet: Packet):
 	history.clear()
 	history.append(nodes[start_node].position)
 	packet.position = nodes[start_node].position
+	print(packet.position)
 	nodes[start_node].startGame(packet)
 
 func _endLevel(success: bool, error: String):

@@ -12,13 +12,12 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 10
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_26h3s"]
-size = Vector2(10, 10)
+[sub_resource type="ImageTexture" id="ImageTexture_6318b"]
 
 [node name="Panel" type="Panel"]
 custom_minimum_size = Vector2(30, 30)
-offset_right = 151.0
-offset_bottom = 20.0
+offset_right = 262.0
+offset_bottom = 30.0
 size_flags_vertical = 4
 theme = ExtResource("1_nxkxq")
 theme_override_styles/panel = SubResource("StyleBoxFlat_8d8fy")
@@ -35,13 +34,20 @@ grow_vertical = 2
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_26h3s")
+texture = SubResource("ImageTexture_6318b")
+expand_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 2
+theme = ExtResource("1_nxkxq")
 text = "Text"
 label_settings = ExtResource("3_ol1sx")
+
+[node name="CheckButton" type="CheckButton" parent="HBoxContainer"]
+layout_mode = 2
+toggle_mode = false
+button_mask = 0
 
 [node name="Button" type="Button" parent="HBoxContainer"]
 layout_mode = 2

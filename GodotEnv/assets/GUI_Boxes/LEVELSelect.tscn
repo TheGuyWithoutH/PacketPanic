@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bw7td8vmoma38"]
+[gd_scene load_steps=13 format=3 uid="uid://bw7td8vmoma38"]
 
 [ext_resource type="Script" path="res://assets/GUI_Boxes/LEVELSelect.gd" id="1_bar2t"]
 [ext_resource type="Theme" uid="uid://bokk2oehtgs2h" path="res://Graphics/themes/black.tres" id="2_03cdy"]
@@ -6,7 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://cl2gfe5a5n2vy" path="res://assets/GUI_Boxes/LevelBar.tscn" id="3_b3q23"]
 [ext_resource type="PackedScene" uid="uid://c38nks18qoy4b" path="res://Scenes/Levels/level1/Level1.tscn" id="5_10bdg"]
 [ext_resource type="PackedScene" uid="uid://celll5cghpmli" path="res://Scenes/Levels/level2/Level2.tscn" id="6_ki41m"]
+[ext_resource type="Texture2D" uid="uid://dfv3n00rgd1t5" path="res://assets/icons/level1.png" id="6_ol77s"]
 [ext_resource type="PackedScene" uid="uid://cbx4oesw1iuun" path="res://Scenes/Levels/level3/Level3.tscn" id="7_drl04"]
+[ext_resource type="PackedScene" uid="uid://bsn2w0wmyyogr" path="res://Scenes/Levels/level4/Level4.tscn" id="8_152hm"]
+[ext_resource type="Texture2D" uid="uid://dguliqb3qwlho" path="res://assets/icons/level2.png" id="8_it3n1"]
+[ext_resource type="Texture2D" uid="uid://dktcxbuchjnc7" path="res://assets/icons/level3.png" id="10_42wpc"]
+[ext_resource type="Texture2D" uid="uid://bmkgcv7sh67s3" path="res://assets/icons/level4.png" id="12_cbcpd"]
 
 [node name="Node2D" type="ColorRect"]
 anchors_preset = 15
@@ -30,27 +35,33 @@ theme = ExtResource("2_03cdy")
 [node name="VBoxContainer" type="VBoxContainer" parent="Level_popup"]
 clip_contents = true
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_constants/separation = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Level_popup/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Popup_text" type="Label" parent="Level_popup/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 theme = ExtResource("2_03cdy")
-text = "Choose level."
+text = "Choose your Level !"
 label_settings = ExtResource("2_nyn8d")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button" type="Button" parent="Level_popup/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+size_flags_horizontal = 8
 text = "X"
 
 [node name="MenuBar" type="ScrollContainer" parent="Level_popup/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 5.06
 theme = ExtResource("2_03cdy")
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
@@ -63,17 +74,26 @@ theme_override_constants/separation = 5
 
 [node name="Panel" parent="Level_popup/VBoxContainer/MenuBar/VBoxContainer" instance=ExtResource("3_b3q23")]
 layout_mode = 2
-levelname = "LEVEL 1"
+levelname = "Dest IP: Comme une lettre a la poste"
 levelscn = ExtResource("5_10bdg")
+lvlimgpath = ExtResource("6_ol77s")
 
 [node name="Panel2" parent="Level_popup/VBoxContainer/MenuBar/VBoxContainer" instance=ExtResource("3_b3q23")]
 layout_mode = 2
-levelname = "LEVEL 2"
+levelname = "Router redirection : Beware of dead nodes !"
 levelscn = ExtResource("6_ki41m")
+lvlimgpath = ExtResource("8_it3n1")
 
 [node name="Panel3" parent="Level_popup/VBoxContainer/MenuBar/VBoxContainer" instance=ExtResource("3_b3q23")]
 layout_mode = 2
-levelname = "LEVEL 3"
+levelname = "MAC_addr : Tell me what you're made of"
 levelscn = ExtResource("7_drl04")
+lvlimgpath = ExtResource("10_42wpc")
+
+[node name="Panel4" parent="Level_popup/VBoxContainer/MenuBar/VBoxContainer" instance=ExtResource("3_b3q23")]
+layout_mode = 2
+levelname = "PAS FINI"
+levelscn = ExtResource("8_152hm")
+lvlimgpath = ExtResource("12_cbcpd")
 
 [connection signal="pressed" from="Level_popup/VBoxContainer/HBoxContainer/Button" to="." method="_on_close_pressed"]
