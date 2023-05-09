@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dsido5vwwogt3"]
+[gd_scene load_steps=21 format=3 uid="uid://dsido5vwwogt3"]
 
 [ext_resource type="Texture2D" uid="uid://bq2plhlptb85c" path="res://Graphics/buttons/image_#g3869_btn.png" id="1"]
 [ext_resource type="Script" path="res://Scenes/Main/UI.gd" id="2"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://Scenes/Main/Packet2.gd" id="14"]
 [ext_resource type="PackedScene" uid="uid://bw7td8vmoma38" path="res://assets/GUI_Boxes/LEVELSelect.tscn" id="16_ik5lf"]
 [ext_resource type="PackedScene" uid="uid://cb288x30rrgyc" path="res://assets/GUI_Boxes/packet_panic.tscn" id="17_cotm5"]
+[ext_resource type="PackedScene" uid="uid://c6yxpm7aemwvr" path="res://assets/GUI_Boxes/packet_success.tscn" id="18_35otu"]
 
 [sub_resource type="GDScript" id="1"]
 script/source = "extends LineEdit
@@ -245,7 +246,21 @@ offset_right = 212.5
 offset_bottom = 113.5
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(1431.5, 5.5)
+pivot_offset = Vector2(1, -2)
+
+[node name="Packet_Success" parent="UI" instance=ExtResource("18_35otu")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -213.0
+offset_top = -113.0
+offset_right = 213.0
+offset_bottom = 113.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="text_changed" from="UI/ColorRect/HBoxContainer/User_Input_Panel/TermInput" to="UI/ColorRect/HBoxContainer/User_Input_Panel/TermInput" method="_on_TermInput_text_changed"]
 [connection signal="text_submitted" from="UI/ColorRect/HBoxContainer/User_Input_Panel/TermInput" to="UI" method="_on_LineEdit_text_entered"]

@@ -27,6 +27,7 @@ func _ready():
 	currentPacket = Packet.instantiate()
 	$Levelselector.position = Vector2(113,49)
 	$Packet_Panic.position = Vector2(1000,1000)
+	$Packet_Success.position = Vector2(1000,1000)
 	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel").lvlselected.connect(_on_lvl_selected)
 	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel2").lvlselected.connect(_on_lvl_selected)
 	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel3").lvlselected.connect(_on_lvl_selected)
@@ -35,6 +36,7 @@ func _ready():
 func _on_lvl_selected(levelscn: PackedScene):
 	setLevel(levelscn)
 	print("selected level : "+ str(levelscn))
+	$Levelselector.position = Vector2(1000,1000)
 
 func setLevel(newLevel: PackedScene):
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/GameBoard/SubViewportContainer/LevelView.remove_child(level)
@@ -127,9 +129,10 @@ func endLevel(success: bool, error: String, history: Array):
 	lastHistory = history
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.tick_count = lastHistory.size()
 	if(success):
-		print("yaaaaay")
+		$Packet_Success.position = Vector2(363,210)
+		$Packet_Success/MarginContainer/VBoxContainer/RichTextLabel.text = "The Packet arrived safely at " + str(currentPacket.dst_addr)
 	else:
-		$Packet_Panic.position = Vector2(578,327)
+		$Packet_Panic.position = Vector2(363,210)
 		$Packet_Panic/MarginContainer/VBoxContainer/RichTextLabel.text = error
 	pass
 
@@ -155,7 +158,7 @@ func terminal_exec(cmd,arg):
 			print("dns adress not implemented")
 			return " "
 		"HTTP_method":
-			currentPacket.setHTTPMethod(arg)
+			currentPacket.setHTTPMethod(str_to_var(arg))
 			return " "
 		"mac_addr":
 			currentPacket.setMac(arg)
