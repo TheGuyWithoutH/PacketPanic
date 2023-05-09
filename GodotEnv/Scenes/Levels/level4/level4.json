@@ -1,0 +1,131 @@
+{
+  "nodes": [
+	{
+	  "type": "start",
+	  "position": [373, 231] 
+	},
+	{
+	  "type": "server",
+	  "position": [-143, 169],
+	  "out_num": 2,
+	  "addr": "185.25.195.104"
+	},
+	{"type": "vpn",
+	"position": [401, 145],
+	"out_num": 1,
+	"index": 0
+	},
+	{"type": "dead",
+	"position": [209, 367],
+	"out_num": 1
+	},
+	{"type": "logic",
+	"position": [201, 243],
+	"out_num": 4
+	},
+	{"type": "slow",
+	"position": [115, -81],
+	"out_num": 2
+	},
+	{"type": "vpn",
+	"position": [-243, 233],
+	"out_num": 1,
+	"index": 0
+	},
+	
+	{"type": "start",
+	"position": [873, -111]
+	},
+	{"type": "attacker",
+	"position": [1097, -103],
+	"out_num": 2
+	},
+	{"type": "server",
+	"position": [1401, -99],
+	"out_num": 1
+	},
+	
+	{"type": "start",
+	"position": [422, 762]
+	},
+	{"type": "logic",
+	"position": [445, 586],
+	"out_num": 5
+	},
+	{"type": "vpn",
+	"position": [588, 516],
+	"out_num": 1,
+	"index": 3
+	},
+	{"type": "vpn",
+	"position": [322, 560],
+	"out_num": 1,
+	"index": 1
+	},
+	{"type": "vpn",
+	"position": [347, 414],
+	"out_num": 1,
+	"index": 2
+	},
+	{"type": "dns",
+	"position": [537, 310],
+	"out_num": 1,
+	"addr": "185.25.195.105",
+	"translation": "185.25.195.104"
+	},
+	{"type": "vpn",
+	"position": [1202, 767],
+	"out_num": 1,
+	"index": 1
+	},
+	{"type": "server",
+	"position": [1378, 784],
+	"out_num": 1,
+	"addr": "185.25.195.104",
+	"http_method": "GET"
+	},
+	{"type": "vpn",
+	"position": [1126, 292],
+	"out_num": 1,
+	"index": 2
+	},
+	{"type": "vpn",
+	"position": [1294, 310],
+	"out_num": 1,
+	"index": 3
+	},
+	{"type": "server",
+	"position": [989, 127],
+	"out_num": 1,
+	"addr": "185.25.195.106",
+	"http_method": "GET"
+	},
+	{"type": "server",
+	"position": [1389, 210],
+	"out_num": 1,
+	"addr": "185.25.195.107",
+	"http_method": "GET"
+	}
+],
+"links":[
+	[0, 0, 4, 0, 5],
+	[4, 1, 3, 0, 5],
+	[4, 2, 5, 0, 15],
+	[4, 3, 2, 0, 5],
+	[5, 1, 1, 0, 15],
+	[6, 0, 1, 1, 5],
+	
+	[7, 0, 8, 0, 5],
+	[8, 1, 9, 0, 5],
+	
+	[10, 0, 11, 0, 5],
+	[11, 1, 13, 0, 5],
+	[11, 2, 14, 0, 5],
+	[11, 3, 15, 0, 5],
+	[11, 4, 12, 0, 5],
+	[18, 0, 20, 0, 5],
+	[19, 0, 21, 0, 5],
+	[16, 0, 17, 0, 5]
+],
+"start_node": 0
+}

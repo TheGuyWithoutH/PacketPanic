@@ -48,6 +48,15 @@ func create(level: Dictionary):
 			'dns':
 				nodeObj = DnsNode.instantiate()
 				nodeObj.create(node['out_num'], i, { 'addr': node['addr'], 'translation': node['translation'] })
+			'slow':
+				nodeObj = MirrorNode.instantiate()
+				nodeObj.create(node['out_num'], i, null)
+			'attacker':
+				nodeObj = MirrorNode.instantiate()
+				nodeObj.create(node['out_num'], i, null)
+			'vpn':
+				nodeObj = MirrorNode.instantiate()
+				nodeObj.create(node['out_num'], i, null)
 		nodes.append(nodeObj)
 		add_child(nodeObj)
 		nodeObj.position = Vector2(node['position'][0], node['position'][1])
