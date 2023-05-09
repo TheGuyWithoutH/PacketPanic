@@ -15,4 +15,4 @@ func _process(delta):
 
 func receivePacket(packet: Packet, link: int):
 	super.receivePacket(packet, link)
-	endGame.emit(false, 'You felt into a dead node')
+	endGame.emit(false, 'Error 421: Misdirected Request, you felt into a dead node')

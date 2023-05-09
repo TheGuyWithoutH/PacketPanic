@@ -37,8 +37,10 @@ func _on_lvl_selected(levelscn: PackedScene):
 	print("selected level : "+ str(levelscn))
 
 func setLevel(newLevel: PackedScene):
+	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/GameBoard/SubViewportContainer/LevelView.remove_child(level)
 	level = newLevel.instantiate()
 	level.endLevel.connect(endLevel)
+	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/GameBoard/SubViewportContainer/LevelView.add_child(level)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -77,16 +79,18 @@ func _on_LineEdit_text_entered(new_text):
 			print("found funct "+ funct_name + " with arg : " + args)
 			if is_from(funct_name,"res://resources/funct_list.txt"):
 				$ColorRect/HBoxContainer/User_Input_Panel/Terminal.text += terminal_exec(funct_name,args)
+				# print_packet_info()
 			else:
-				print("error : program \"" + funct_name + "\" not found.")
+				print("error : function \"" + funct_name + "\" not found.")
 		elif cmd_command:
 			var prog_name = cmd_command.get_string(1)
 			var args = cmd_command.get_string(2)
 			print("found command "+ prog_name)
 			if is_from(prog_name,"res://resources/cmdlist.txt"):
 				$ColorRect/HBoxContainer/User_Input_Panel/Terminal.text += terminal_exec(prog_name,args)
+				# print_packet_info()
 			else:
-				print("error : program \"" + prog_name + "\" not found.")
+				print("error : command \"" + prog_name + "\" not found.")
 		else :
 			print("error : \"" + new_text + "\" not recognized.")
 
@@ -105,9 +109,6 @@ func _on_timeslider_value_changed(value):
 func _on_Start_Button_pressed():
 	print("start")
 	lastHistory.clear()
-	currentPacket.setDestination('185.25.195.105')
-	currentPacket.setMac('5E:FF:56:A2:AF:03')
-	currentPacket.setPort(80)
 	level.startLevel(currentPacket)
 	
 func is_from(word,file):
@@ -129,7 +130,7 @@ func endLevel(success: bool, error: String, history: Array):
 		print("yaaaaay")
 	else:
 		$Packet_Panic.position = Vector2(578,327)
-		$Packet_Panic/MarginContainer/VBoxContainer/RichTextLabel.text = "error : "+ error
+		$Packet_Panic/MarginContainer/VBoxContainer/RichTextLabel.text = error
 	pass
 
 
@@ -167,12 +168,11 @@ func terminal_exec(cmd,arg):
 			return " "
 		_: 
 			return "\n" + cmd + "not implemented ," + arg
-	print_packet_info()
 	
 func print_packet_info():
 	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text = "Packet :"
-	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nsrc_ip :" + currentPacket.src_addr
-	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\ndest_ip :" + currentPacket.dst_addr
+	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nsrc_ip :" + currentPacket.src_addr.ip_address
+	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\ndest_ip :" + currentPacket.dst_addr.ip_address
 	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nport :" + str(currentPacket.port)
 	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nmac_addr :" + str(currentPacket.mac_addr)
 	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nHTTP_meth :" + str(currentPacket.http_method)
