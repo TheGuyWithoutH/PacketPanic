@@ -7,6 +7,7 @@ var links: Array
 var node_id: int
 signal sendPacket(packet: Packet, link: int, node_id: int)
 signal endGame(success: bool, error: String)
+signal sendVPN(packet: Packet, vpn: int)
 var ip: Utils.IPAddress = null
 
 func create(num_links, id, params):

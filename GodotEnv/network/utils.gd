@@ -31,7 +31,7 @@ class MACAddress:
 		print(int(numbers[numbers.size() - 1]))
 		return int(numbers[numbers.size() - 1])
 
-enum Encryption {NONE, RSA, AES, POST_QUANTUM}
+enum Encryption {NONE, VIGENERE, AES, POST_QUANTUM}
 
 enum HTTPMethod {GET, POST, DELETE}
 

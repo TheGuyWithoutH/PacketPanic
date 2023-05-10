@@ -7,6 +7,8 @@ var end_node: Utils.IPAddress
 var nodes: Array
 var links: Array
 var history: Array
+var timeout: int
+var finished = false
 
 const Packet = preload("res://network/Packet.tscn")
 var idlePacket: Packet
@@ -18,6 +20,9 @@ const NetworkLink = preload("res://network/NetworkLink.tscn")
 const ClientNode = preload("res://network/nodes/client_node.tscn")
 const MirrorNode =  preload("res://network/nodes/mirror_node.tscn")
 const DnsNode =  preload("res://network/nodes/dns_node.tscn")
+const AttackerNode = preload("res://network/nodes/attacker_node.tscn")
+const VpnNode = preload("res://network/nodes/vpn_node.tscn")
+const SlowNode = preload("res://network/nodes/slow_node.tscn")
 
 signal finishGame(success: bool, error: String, history: Array)
 
@@ -49,22 +54,24 @@ func create(level: Dictionary):
 				nodeObj = DnsNode.instantiate()
 				nodeObj.create(node['out_num'], i, { 'addr': node['addr'], 'translation': node['translation'] })
 			'slow':
-				nodeObj = MirrorNode.instantiate()
-				nodeObj.create(node['out_num'], i, null)
+				nodeObj = SlowNode.instantiate()
+				nodeObj.create(node['out_num'], i, { 'delay': node['delay'] })
 			'attacker':
-				nodeObj = MirrorNode.instantiate()
-				nodeObj.create(node['out_num'], i, null)
+				nodeObj = AttackerNode.instantiate()
+				nodeObj.create(node['out_num'], i, { 'encryption': node['encryption'] })
 			'vpn':
-				nodeObj = MirrorNode.instantiate()
-				nodeObj.create(node['out_num'], i, null)
+				nodeObj = VpnNode.instantiate()
+				nodeObj.create(node['out_num'], i, { 'addr': node['addr'], 'name': node['name'], 'vpn_list': node['vpn_list'] })
 		nodes.append(nodeObj)
 		add_child(nodeObj)
 		nodeObj.position = Vector2(node['position'][0], node['position'][1])
 		nodeObj.sendPacket.connect(_handleStartTransfer)
+		nodeObj.sendVPN.connect(_sendToVPN)
 		nodeObj.endGame.connect(_endLevel)
 		i += 1
 	
 	start_node = level['start_node']
+	timeout = level['timeout']
 	
 	var links_list = level['links']
 	i = 0
@@ -83,33 +90,37 @@ func create(level: Dictionary):
 	add_child(idlePacket)
 	print(idlePacket.position)
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	
 func _handleStartTransfer(packet: Packet, link: int, node_id: int):
 	print(link)
 	links[link].transferPacket(packet, node_id)
+
+func _sendToVPN(packet: Packet, vpn: int):
+	print('arrived after vpn')
+	history.append(nodes[vpn].position)
+	nodes[vpn].receivePacketVpn(packet)
 	
 func _handleEndTransfer(packet: Packet, node: int, link: int):
 	print('end transfer')
 	history.append(nodes[node].position)
-	nodes[node].receivePacket(packet, link)
+	if(!finished):
+		nodes[node].receivePacket(packet, link)
 
 # Method to call to start the game
 func startGame(packet: Packet):
+	finished = false
 	remove_child(idlePacket)
 	history.clear()
 	history.append(nodes[start_node].position)
 	packet.position = nodes[start_node].position
 	print(packet.position)
 	nodes[start_node].startGame(packet)
+	$MaxTime.start(timeout)
 
 func _endLevel(success: bool, error: String):
+	finished = true
 	finishGame.emit(success, error, history)
+
+
+func _on_time_timeout():
+	finished = true
+	_endLevel(false, "Error 408: Request timeout, you took too long to arrive")

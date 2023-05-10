@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqxakuf8aunne"]
+
+[ext_resource type="Script" path="res://network/nodes/vpn_node.gd" id="1_oe008"]
+
+[node name="VpnNode" type="Node2D"]
+script = ExtResource("1_oe008")

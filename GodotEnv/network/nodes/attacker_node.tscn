@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgg6lsoyq5ffi"]
+
+[ext_resource type="Script" path="res://network/nodes/attacker_node.gd" id="1_bi83d"]
+[ext_resource type="Texture2D" uid="uid://dghowub8tdyyu" path="res://assets/icons/Deadnode.png" id="2_i3nn3"]
+
+[node name="AttackerNode" type="Node2D"]
+script = ExtResource("1_bi83d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_i3nn3")
