@@ -6,10 +6,13 @@ class_name BasicLevel
 @export var json_file: JSON
 var network: NetworkManager
 
+var title: String
+
 signal endLevel(success: bool, error: String, history: Array)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	title = "Title 1"
 	var file = FileAccess.open(json_file.resource_path, FileAccess.READ)
 	var json = json_file.parse_string(file.get_as_text())
 	network = manager.instantiate()

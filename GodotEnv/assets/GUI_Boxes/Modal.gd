@@ -1,5 +1,7 @@
 extends PanelContainer
 
+class_name Modal
+
 @export var panel_text: PackedStringArray
 
 @onready var index = 0
@@ -12,8 +14,8 @@ func _ready():
 func _on_next_pressed():
 	index += 1
 	$MarginContainer/VBoxContainer/HBoxContainer/previous.disabled = false
-	if (index >= panel_text.size()):
-		index = panel_text.size()
+	if (index >= panel_text.size()-1):
+		index = panel_text.size()-1
 		$MarginContainer/VBoxContainer/HBoxContainer/next.disabled = true
 	$MarginContainer/VBoxContainer/prompteur.text = panel_text[index]
 
@@ -28,4 +30,4 @@ func _on_previous_pressed():
 
 
 func _on_close_pressed():
-	pass # Replace with function body.
+	pass

@@ -1,10 +1,12 @@
-[gd_resource type="Theme" load_steps=15 format=3 uid="uid://bokk2oehtgs2h"]
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://bokk2oehtgs2h"]
 
 [ext_resource type="StyleBox" uid="uid://d3p7wljsnrpmm" path="res://Graphics/defstylebox.tres" id="1"]
 [ext_resource type="FontFile" uid="uid://btenskujt1ylf" path="res://Graphics/Fonts/CONSOLA.TTF" id="1_igd1c"]
 [ext_resource type="StyleBox" uid="uid://fkn63lj8kvwj" path="res://Graphics/themes/black_stylebox.tres" id="2"]
 [ext_resource type="FontFile" uid="uid://c1o0i5fp0ji0x" path="res://Graphics/Fonts/Consolas.ttf" id="3"]
+[ext_resource type="Texture2D" uid="uid://mytqmkpcq5lj" path="res://assets/icons/green_bug.svg" id="3_wwyef"]
 [ext_resource type="FontFile" uid="uid://cc4wf7rp2sn3h" path="res://Graphics/Fonts/consolai.ttf" id="4"]
+[ext_resource type="Texture2D" uid="uid://bix1ak7hn3pyw" path="res://assets/icons/red_bug.svg" id="4_haus1"]
 [ext_resource type="FontFile" uid="uid://qe7j18gc73qf" path="res://Graphics/Fonts/CONSOLAB.TTF" id="5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cgb6c"]
@@ -27,10 +29,10 @@ content_margin_right = 0.0
 content_margin_bottom = 0.0
 bg_color = Color(0.215686, 0.215686, 0.215686, 1)
 border_color = Color(0.8, 0, 0.8, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 corner_detail = 10
 anti_aliasing = false
 
@@ -83,6 +85,10 @@ cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [sub_resource type="StyleBoxFlat" id="1"]
+content_margin_left = 4.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
 bg_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
@@ -106,9 +112,9 @@ Button/styles/hover = null
 Button/styles/normal = ExtResource("1")
 Button/styles/pressed = null
 HBoxContainer/constants/separation = 4
-HSlider/icons/grabber = null
-HSlider/icons/grabber_disabled = null
-HSlider/icons/grabber_highlight = null
+HSlider/icons/grabber = ExtResource("3_wwyef")
+HSlider/icons/grabber_disabled = ExtResource("4_haus1")
+HSlider/icons/grabber_highlight = ExtResource("3_wwyef")
 HSlider/icons/tick = null
 HSlider/styles/grabber_area = ExtResource("2")
 HSlider/styles/grabber_area_highlight = ExtResource("2")
@@ -151,8 +157,8 @@ RichTextLabel/constants/line_separation = 1
 RichTextLabel/constants/shadow_as_outline = 0
 RichTextLabel/constants/shadow_offset_x = 1
 RichTextLabel/constants/shadow_offset_y = 1
-RichTextLabel/constants/table_hseparation = 3
-RichTextLabel/constants/table_vseparation = 3
+RichTextLabel/constants/table_hseparation = 2
+RichTextLabel/constants/table_vseparation = 2
 RichTextLabel/fonts/bold_font = SubResource("2")
 RichTextLabel/fonts/bold_italics_font = SubResource("3")
 RichTextLabel/fonts/italics_font = SubResource("4")

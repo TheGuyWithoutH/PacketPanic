@@ -123,4 +123,5 @@ func _endLevel(success: bool, error: String):
 
 func _on_time_timeout():
 	finished = true
+	$MaxTime.stop()
 	_endLevel(false, "Error 408: Request timeout, you took too long to arrive")

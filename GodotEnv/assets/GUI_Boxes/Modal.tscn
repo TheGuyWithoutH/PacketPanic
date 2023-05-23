@@ -1,9 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5sm04ln1386b"]
+[gd_scene load_steps=3 format=3 uid="uid://b5sm04ln1386b"]
 
+[ext_resource type="Theme" uid="uid://bokk2oehtgs2h" path="res://Graphics/themes/black.tres" id="1_014nr"]
 [ext_resource type="Script" path="res://assets/GUI_Boxes/Modal.gd" id="1_kepiy"]
 
 [node name="Modal" type="PanelContainer"]
 custom_minimum_size = Vector2(150, 150)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -75.0
+offset_right = 210.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_014nr")
 script = ExtResource("1_kepiy")
 panel_text = PackedStringArray("hello", "je suis", "content")
 
@@ -21,7 +34,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_vertical = 3
-text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+text = "TEXT"
 fit_content = true
 scroll_active = false
 

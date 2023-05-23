@@ -13,6 +13,7 @@ var level: BasicLevel
 var levelbar: LevelBar
 var currentPacket: Packet
 var lastHistory: Array
+var modal_window: Modal 
 
 # Right now for default scene, when menu is done use setLevel instead
 @export var levelScene: PackedScene
@@ -21,6 +22,7 @@ var lastHistory: Array
 func _ready():
 	func_reg.compile("(\\w+)\\((.*)\\)")
 	command_reg.compile("(\\w+) *(.*)")
+	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.editable = false
 	$ColorRect/HBoxContainer/User_Input_Panel/TermInput.text = "> "
 	$ColorRect/HBoxContainer/User_Input_Panel/TermInput.caret_column = 2
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeval.text = "%d" % $ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.value
@@ -42,12 +44,10 @@ func _ready():
 	currentPacket.encryptMessage(0)
 	currentPacket.errstr.connect(_on_input_err)
 	
-	
 func _on_lvl_selected(levelscn: PackedScene,cur_bar: LevelBar):
 	levelbar = cur_bar
 	print_packet_info()
 	setLevel(levelscn)
-	print("selected level : "+ str(levelscn))
 	$Levelselector.position = Vector2(1000,1000)
 
 func setLevel(newLevel: PackedScene):
@@ -128,6 +128,7 @@ func _on_timeslider_value_changed(value):
 func _on_Start_Button_pressed():
 	print("start")
 	lastHistory.clear()
+	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.editable = false
 	level.startLevel(currentPacket)
 	
 func is_from(word,file):
@@ -144,6 +145,7 @@ func is_from(word,file):
 func endLevel(success: bool, error: String, history: Array):
 	print('end: ' + error)
 	lastHistory = history
+	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.editable = true
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.tick_count = lastHistory.size()
 	if(success):
 		$Packet_Success.position = Vector2(363,210)
