@@ -13,6 +13,8 @@ var encryption
 var isTampered = false
 @export var message = ""
 
+signal errstr(errstr:String)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -22,16 +24,29 @@ func _process(delta):
 	pass
 	
 func setSource(address: String):
-	src_addr = Utils.IPAddress.new(address)
+	var tmpaddr = Utils.IPAddress.new(address)
+	if (!tmpaddr._error):
+		src_addr = tmpaddr
+	else :
+		errstr.emit("\""+address+"\" is not a valid ip address !")
 
 func setDestination(address: String):
-	dst_addr = Utils.IPAddress.new(address)
+	var tmpaddr = Utils.IPAddress.new(address)
+	if (!tmpaddr._error):
+		dst_addr = tmpaddr
+	else :
+		errstr.emit("\""+address+"\" is not a valid ip address !")
+	
 
 func setPort(process_port: int):
 	port = process_port
 
 func setMac(mac: String):
-	mac_addr = Utils.MACAddress.new(mac)
+	var tmpaddr = Utils.MACAddress.new(mac)
+	if (!tmpaddr._error):
+		mac_addr = tmpaddr
+	else :
+		errstr.emit("\""+mac+"\" is not a valid MAC address !")
 
 func encryptMessage(protocol: Utils.Encryption):
 	encryption = protocol

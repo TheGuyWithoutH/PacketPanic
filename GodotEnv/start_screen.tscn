@@ -54,5 +54,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 placeholder_text = "Password"
+secret = true
 
 [connection signal="text_submitted" from="MarginContainer/Container/password_in" to="." method="_on_password_in_text_submitted"]

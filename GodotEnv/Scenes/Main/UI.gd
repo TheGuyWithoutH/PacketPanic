@@ -40,6 +40,7 @@ func _ready():
 	currentPacket.setSource("1.1.1.1")
 	currentPacket.setMac("de:ad:be:ef:00:7d")
 	currentPacket.encryptMessage(0)
+	currentPacket.errstr.connect(_on_input_err)
 	
 	
 func _on_lvl_selected(levelscn: PackedScene,cur_bar: LevelBar):
@@ -74,6 +75,9 @@ func _input(event):
 				if cmdindex > entryarray.size():
 					cmdindex = entryarray.size()
 					$ColorRect/HBoxContainer/User_Input_Panel/TermInput.text = "> "
+
+func _on_input_err(errtext:String) -> void:
+	$ColorRect/HBoxContainer/User_Input_Panel/Terminal.text += "\n" + errtext
 			
 func _on_LineEdit_text_entered(new_text):
 	if new_text.length() > 2:
