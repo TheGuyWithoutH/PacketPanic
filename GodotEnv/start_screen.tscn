@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://ciax1c654kdmn"]
+
+[ext_resource type="Texture2D" uid="uid://tmgg1ipaaon3" path="res://assets/images/vista.jpg" id="1_0xfh0"]
+[ext_resource type="Script" path="res://start_screen.gd" id="1_kqlko"]
+[ext_resource type="Texture2D" uid="uid://bxvaru1g61fes" path="res://assets/icons/user_logo.svg" id="2_w3iyb"]
+
+[node name="Start_screen_scn" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kqlko")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_0xfh0")
+expand_mode = 2
+
+[node name="Container" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Container"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_w3iyb")
+expand_mode = 5
+
+[node name="username_in" type="LineEdit" parent="MarginContainer/Container"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+placeholder_text = "User"
+
+[node name="password_in" type="LineEdit" parent="MarginContainer/Container"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+placeholder_text = "Password"
+
+[connection signal="text_submitted" from="MarginContainer/Container/password_in" to="." method="_on_password_in_text_submitted"]
