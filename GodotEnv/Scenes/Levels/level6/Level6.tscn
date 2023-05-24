@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://Scenes/Levels/BasicLevel.gd" id="1_gocfk"]
 [ext_resource type="PackedScene" uid="uid://b0syi3emene8q" path="res://network/network_manager.tscn" id="2_ta7ol"]
-[ext_resource type="JSON" path="res://Scenes/Levels/level4/level4.json" id="3_fr7px"]
+[ext_resource type="JSON" path="res://Scenes/Levels/level6/level6.json" id="3_yp53x"]
 [ext_resource type="Texture2D" uid="uid://gemwftom1k0u" path="res://assets/images/Carte.png" id="4_eidqf"]
 
-[node name="Level4" type="Node2D"]
+[node name="Level6" type="Node2D"]
 script = ExtResource("1_gocfk")
 manager = ExtResource("2_ta7ol")
-json_file = ExtResource("3_fr7px")
-explanationsText = Array[String](["Your cop friend has told you some worrying rumors. You have to quickly inform your british branch about it, before it's too late!", "Speed will be very important here, so try to avoid any busy node that would slow you down!"])
+json_file = ExtResource("3_yp53x")
+explanationsText = Array[String](["It's your mom's birthday! You should send her a message!"])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2216, 1272)

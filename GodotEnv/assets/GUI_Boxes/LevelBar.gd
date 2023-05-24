@@ -16,6 +16,7 @@ func _ready():
 
 func _on_button_pressed():
 	print(levelname + " pressed !")
+	print(levelscn)
 	lvlselected.emit(levelscn,self)
 
 func _done(lvlok:bool):

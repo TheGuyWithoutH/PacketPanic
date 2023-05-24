@@ -70,6 +70,41 @@
 	  "type": "dead",
 	  "position": [2380, 1350],
 	  "out_num": 1
+	},
+
+	{
+	  "type": "start",
+	  "position": [2232, 1167]
+	},
+	{
+	  "type": "logic",
+	  "position": [2503, 1237],
+	  "out_num": 3
+	},
+	{
+	  "type": "server",
+	  "position": [2116, 1042],
+	  "out_num": 2,
+	  "addr": "185.25.195.104",
+	  "http_method": "POST"
+	},
+	{
+	  "type": "slow",
+	  "delay": 2,
+	  "position": [2840, 894],
+	  "out_num": 2
+	},
+	{
+	  "type": "logic",
+	  "out_num": 2,
+	  "shifting": 1,
+	  "position": [3012, 1119]
+	},
+	{
+	  "type": "logic",
+	  "out_num": 2,
+	  "shifting": 1,
+	  "position": [2745, 1237]
 	}
   ],
   "links": [
@@ -82,8 +117,15 @@
 	[8, 0, 9, 0, 5],
 	[9, 3, 10, 0, 5],
 	[9, 1, 11, 0, 5],
-	[9, 2, 12, 0, 5]
+	[9, 2, 12, 0, 5],
+	[13, 0, 14, 0, 5],
+	[14, 1, 16, 0, 5],
+	[14, 2, 18, 0, 5],
+	[16, 1, 15, 0, 5],
+	[18, 1, 17, 0, 5],
+	[17, 1, 15, 1, 5]
   ],
   "start_node": 8,
   "timeout": 20
 }
+

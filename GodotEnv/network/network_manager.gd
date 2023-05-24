@@ -101,9 +101,11 @@ func _sendToVPN(packet: Packet, vpn: int):
 	
 func _handleEndTransfer(packet: Packet, node: int, link: int):
 	print('end transfer')
-	history.append(nodes[node].position)
 	if(!finished):
+		history.append(nodes[node].position)
 		nodes[node].receivePacket(packet, link)
+	else:
+		packet.setMoving(false)
 
 # Method to call to start the game
 func startGame(packet: Packet):

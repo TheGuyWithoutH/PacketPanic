@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bw7td8vmoma38"]
+[gd_scene load_steps=17 format=3 uid="uid://cev712xjt450p"]
 
 [ext_resource type="Script" path="res://assets/GUI_Boxes/LEVELSelect.gd" id="1_bar2t"]
 [ext_resource type="Theme" uid="uid://bokk2oehtgs2h" path="res://Graphics/themes/black.tres" id="2_03cdy"]
@@ -8,10 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://celll5cghpmli" path="res://Scenes/Levels/level2/Level2.tscn" id="6_ki41m"]
 [ext_resource type="Texture2D" uid="uid://dfv3n00rgd1t5" path="res://assets/icons/level1.png" id="6_ol77s"]
 [ext_resource type="PackedScene" uid="uid://cbx4oesw1iuun" path="res://Scenes/Levels/level3/Level3.tscn" id="7_drl04"]
-[ext_resource type="PackedScene" uid="uid://bsn2w0wmyyogr" path="res://Scenes/Levels/level4/Level4.tscn" id="8_152hm"]
 [ext_resource type="Texture2D" uid="uid://dguliqb3qwlho" path="res://assets/icons/level2.png" id="8_it3n1"]
 [ext_resource type="Texture2D" uid="uid://dktcxbuchjnc7" path="res://assets/icons/level3.png" id="10_42wpc"]
 [ext_resource type="Texture2D" uid="uid://bmkgcv7sh67s3" path="res://assets/icons/level4.png" id="12_cbcpd"]
+[ext_resource type="PackedScene" uid="uid://bq0htih0125m1" path="res://Scenes/Levels/level5/Level5.tscn" id="13_5wsiu"]
+[ext_resource type="Texture2D" uid="uid://cltd8kknxqw8u" path="res://assets/icons/level5.png" id="14_7er7m"]
+[ext_resource type="Texture2D" uid="uid://dr3lya0ajk60l" path="res://assets/icons/level6.png" id="16_y4o8f"]
+[ext_resource type="PackedScene" uid="uid://bsn2w0wmyyogr" path="res://Scenes/Levels/level4/Level4.tscn" id="17_138we"]
+[ext_resource type="PackedScene" uid="uid://bsn2w0wmyyogr" path="res://Scenes/Levels/level7/Level7.tscn" id="17_b2dej"]
 
 [node name="Node2D" type="ColorRect"]
 anchors_preset = 15
@@ -21,7 +25,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.403922, 0.403922, 0.403922, 1)
 script = ExtResource("1_bar2t")
-level_list = Array[PackedScene]([null])
 
 [node name="Level_popup" type="MarginContainer" parent="."]
 clip_contents = true
@@ -75,26 +78,44 @@ theme_override_constants/separation = 5
 
 [node name="Panel" parent="Level_popup/VBoxContainer/MenuBar/VBoxContainer" instance=ExtResource("3_b3q23")]
 layout_mode = 2
-levelname = "Dest IP: Comme une lettre a la poste"
+levelname = "Destination IP: Like a letter in the mailbox"
 levelscn = ExtResource("5_10bdg")
 lvlimgpath = ExtResource("6_ol77s")
 
 [node name="Panel2" parent="Level_popup/VBoxContainer/MenuBar/VBoxContainer" instance=ExtResource("3_b3q23")]
 layout_mode = 2
-levelname = "Router redirection : Beware of dead nodes !"
+levelname = "HTTP Method: What do you want from me"
 levelscn = ExtResource("6_ki41m")
 lvlimgpath = ExtResource("8_it3n1")
 
 [node name="Panel3" parent="Level_popup/VBoxContainer/MenuBar/VBoxContainer" instance=ExtResource("3_b3q23")]
 layout_mode = 2
-levelname = "MAC_addr : Tell me what you're made of"
+levelname = "MAC Address: Guide me on my way"
 levelscn = ExtResource("7_drl04")
 lvlimgpath = ExtResource("10_42wpc")
 
 [node name="Panel4" parent="Level_popup/VBoxContainer/MenuBar/VBoxContainer" instance=ExtResource("3_b3q23")]
 layout_mode = 2
-levelname = "PAS FINI"
-levelscn = ExtResource("8_152hm")
+levelname = "Timeout: Time is money"
+levelscn = ExtResource("17_138we")
 lvlimgpath = ExtResource("12_cbcpd")
+
+[node name="Panel5" parent="Level_popup/VBoxContainer/MenuBar/VBoxContainer" instance=ExtResource("3_b3q23")]
+layout_mode = 2
+levelname = "VPN: Teleport anywhere"
+levelscn = ExtResource("13_5wsiu")
+lvlimgpath = ExtResource("14_7er7m")
+
+[node name="Panel6" parent="Level_popup/VBoxContainer/MenuBar/VBoxContainer" instance=ExtResource("3_b3q23")]
+layout_mode = 2
+levelname = "Attackers: Beware of the spies"
+levelscn = ExtResource("17_b2dej")
+lvlimgpath = ExtResource("16_y4o8f")
+
+[node name="Panel7" parent="Level_popup/VBoxContainer/MenuBar/VBoxContainer" instance=ExtResource("3_b3q23")]
+layout_mode = 2
+levelname = "DNS: Could you please indicate me the direction?"
+levelscn = ExtResource("17_b2dej")
+lvlimgpath = ExtResource("16_y4o8f")
 
 [connection signal="pressed" from="Level_popup/VBoxContainer/HBoxContainer/Button" to="." method="_on_close_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5sm04ln1386b"]
+[gd_scene load_steps=3 format=3 uid="uid://dw3d5mprbw0yi"]
 
 [ext_resource type="Theme" uid="uid://bokk2oehtgs2h" path="res://Graphics/themes/black.tres" id="1_014nr"]
 [ext_resource type="Script" path="res://assets/GUI_Boxes/Modal.gd" id="1_kepiy"]
@@ -46,21 +46,21 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 8
-text = "Prev"
+text = "Previous"
 
 [node name="close" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 8
-text = "got it"
+text = "Got it!"
 
 [node name="next" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 8
-text = "next"
+text = "Next"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/previous" to="." method="_on_previous_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/close" to="." method="_on_close_pressed"]

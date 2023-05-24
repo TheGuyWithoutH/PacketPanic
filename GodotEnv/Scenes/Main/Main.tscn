@@ -1,12 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://dsido5vwwogt3"]
+[gd_scene load_steps=15 format=3 uid="uid://dsido5vwwogt3"]
 
 [ext_resource type="Script" path="res://Scenes/Main/UI.gd" id="2"]
-[ext_resource type="PackedScene" uid="uid://c38nks18qoy4b" path="res://Scenes/Levels/level1/Level1.tscn" id="3_qnaup"]
+[ext_resource type="PackedScene" uid="uid://c1tqfchmcoeki" path="res://Scenes/Levels/empty/EmptyLevel.tscn" id="3_35lyv"]
 [ext_resource type="Theme" uid="uid://bokk2oehtgs2h" path="res://Graphics/themes/black.tres" id="4"]
+[ext_resource type="PackedScene" uid="uid://dw3d5mprbw0yi" path="res://assets/GUI_Boxes/Modal.tscn" id="10_4q2cm"]
 [ext_resource type="Script" path="res://Scenes/Main/Documentation.gd" id="12"]
 [ext_resource type="Theme" path="res://Graphics/themes/BaseTheme.tres" id="13"]
 [ext_resource type="Script" path="res://Scenes/Main/Packet2.gd" id="14"]
-[ext_resource type="PackedScene" uid="uid://bw7td8vmoma38" path="res://assets/GUI_Boxes/LEVELSelect.tscn" id="16_ik5lf"]
+[ext_resource type="PackedScene" uid="uid://cev712xjt450p" path="res://assets/GUI_Boxes/LEVELSelect.tscn" id="16_ik5lf"]
 [ext_resource type="PackedScene" uid="uid://cb288x30rrgyc" path="res://assets/GUI_Boxes/packet_panic.tscn" id="17_cotm5"]
 [ext_resource type="PackedScene" uid="uid://c6yxpm7aemwvr" path="res://assets/GUI_Boxes/packet_success.tscn" id="18_35otu"]
 
@@ -42,7 +43,7 @@ size_flags_vertical = 3
 theme = ExtResource("4")
 border_width = 0.0
 script = ExtResource("2")
-levelScene = ExtResource("3_qnaup")
+levelScene = ExtResource("3_35lyv")
 
 [node name="ColorRect" type="ColorRect" parent="UI"]
 layout_mode = 0
@@ -196,6 +197,30 @@ layout_mode = 1
 offset_right = 119.0
 offset_bottom = 28.0
 text = "Level Selector"
+
+[node name="Darken" type="ColorRect" parent="UI"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 3.0
+offset_right = 2.0
+offset_bottom = -1.0
+color = Color(0, 0, 0, 0.776471)
+
+[node name="Modal" parent="UI" instance=ExtResource("10_4q2cm")]
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 367.0
+offset_top = 251.0
+offset_right = 787.0
+offset_bottom = 401.0
+grow_horizontal = 1
+grow_vertical = 1
+panel_text = PackedStringArray("hello")
 
 [node name="Levelselector" parent="UI" instance=ExtResource("16_ik5lf")]
 layout_mode = 1

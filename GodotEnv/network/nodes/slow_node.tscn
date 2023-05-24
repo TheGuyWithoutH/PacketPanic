@@ -1,14 +1,52 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=9 format=3 uid="uid://cakaeb4cljvpr"]
 
 [ext_resource type="Script" path="res://network/nodes/slow_node.gd" id="1_d88ii"]
-[ext_resource type="Texture2D" uid="uid://bcr6mpdxfy6p3" path="res://assets/icons/Cercle.png" id="2_6m01f"]
+[ext_resource type="Texture2D" uid="uid://bhqgny6yex8p2" path="res://assets/icons/Busy1.png" id="2_gfo30"]
+[ext_resource type="Texture2D" uid="uid://dpb10sjv3o6qk" path="res://assets/icons/Busy2.png" id="3_tc4hr"]
+[ext_resource type="Texture2D" uid="uid://cltg0nc4f2jp0" path="res://assets/icons/Busy3.png" id="4_oip81"]
+[ext_resource type="Texture2D" uid="uid://cvwl5iuu0ason" path="res://assets/icons/Busy4.png" id="5_kq340"]
+[ext_resource type="Texture2D" uid="uid://dgsbpaayu5vtm" path="res://assets/icons/Busy5.png" id="6_rcur6"]
+[ext_resource type="Texture2D" uid="uid://dv68jhbecm02" path="res://assets/icons/Busy6.png" id="7_2jhhq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n4mvs"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gfo30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tc4hr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_oip81")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_kq340")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rcur6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2jhhq")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
 
 [node name="SlowNode" type="Node2D"]
+z_index = 3
 script = ExtResource("1_d88ii")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_6m01f")
+sprite_frames = SubResource("SpriteFrames_n4mvs")
+animation = &"new_animation"
 
 [node name="Timer" type="Timer" parent="."]
 

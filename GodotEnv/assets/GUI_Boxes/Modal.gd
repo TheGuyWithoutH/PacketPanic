@@ -30,4 +30,5 @@ func _on_previous_pressed():
 
 
 func _on_close_pressed():
-	pass
+	self.hide()
+	self.get_parent().get_node("Darken").hide()

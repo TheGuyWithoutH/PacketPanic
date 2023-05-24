@@ -5,3 +5,4 @@ func _ready():
 
 func _on_close_pressed():
 	self.position = Vector2(1000,1000)
+	self.get_parent().get_node("Darken").hide()

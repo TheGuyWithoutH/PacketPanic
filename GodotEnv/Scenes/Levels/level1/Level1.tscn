@@ -9,6 +9,7 @@
 script = ExtResource("1_hh4dx")
 manager = ExtResource("2_pabke")
 json_file = ExtResource("3_4p216")
+explanationsText = Array[String](["You are trying to upload some important documents on the cloud! To do so you have to reach the server hosting your files.", "First things first, hover your mouse on the server! It's the blue box on the map!You will be shown a panel containing information about the server.", "You can use this information by coding certain commands into your packet. Check the documentation on the right side of the screen!", "Once you're done, click on the \"Send Packet\" button!"])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2216, 1272)

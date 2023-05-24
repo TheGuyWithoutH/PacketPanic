@@ -8,6 +8,7 @@ func create(num_links, id, params):
 	assert(params['delay'] != null)
 	super.create(num_links, id, params)
 	delay = params['delay']
+	$AnimatedSprite2D.play()
 
 func receivePacket(packet: Packet, link: int):
 	super.receivePacket(packet, link)
@@ -16,6 +17,7 @@ func receivePacket(packet: Packet, link: int):
 	$Timer.start(delay)
 
 func _on_delay_finish():
+	$Timer.stop()
 	if(num_links == 1):
 		_sendPacket(currentPacket, 0)
 	else:

@@ -26,9 +26,8 @@ func _ready():
 	$ColorRect/HBoxContainer/User_Input_Panel/TermInput.text = "> "
 	$ColorRect/HBoxContainer/User_Input_Panel/TermInput.caret_column = 2
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeval.text = "%d" % $ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.value
-	level = levelScene.instantiate()
-	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/GameBoard/SubViewportContainer/LevelView.add_child(level)
-	level.endLevel.connect(endLevel)
+	$Modal.hide()
+	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/GameBoard/SubViewportContainer/LevelView.add_child(levelScene.instantiate())
 	currentPacket = Packet.instantiate()
 	$Levelselector.position = Vector2(113,49)
 	$Packet_Panic.position = Vector2(1000,1000)
@@ -36,7 +35,10 @@ func _ready():
 	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel").lvlselected.connect(_on_lvl_selected)
 	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel2").lvlselected.connect(_on_lvl_selected)
 	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel3").lvlselected.connect(_on_lvl_selected)
-	setLevel(load("res://Scenes/Levels/level1/Level1.tscn"))
+	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel4").lvlselected.connect(_on_lvl_selected)
+	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel5").lvlselected.connect(_on_lvl_selected)
+	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel6").lvlselected.connect(_on_lvl_selected)
+	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel7").lvlselected.connect(_on_lvl_selected)
 	#init packet
 	currentPacket.setDestination("0.0.0.0")
 	currentPacket.setSource("1.1.1.1")
@@ -54,6 +56,7 @@ func setLevel(newLevel: PackedScene):
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/GameBoard/SubViewportContainer/LevelView.remove_child(level)
 	level = newLevel.instantiate()
 	level.endLevel.connect(endLevel)
+	level.startExplanation.connect(_on_start_explanations)
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/GameBoard/SubViewportContainer/LevelView.add_child(level)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -159,6 +162,7 @@ func endLevel(success: bool, error: String, history: Array):
 
 func _on_button_levelselector():
 	$Levelselector.position = Vector2(113,49)
+	$Darken.show()
 	
 	
 func terminal_exec(cmd,arg):
@@ -213,3 +217,11 @@ func print_packet_info():
 	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\n############"
 	
 
+func _on_start_explanations(explanations: Array[String]):
+	$Modal.index = 0
+	$Modal/MarginContainer/VBoxContainer/HBoxContainer/next.disabled = false
+	$Modal/MarginContainer/VBoxContainer/HBoxContainer/previous.disabled = true
+	$Modal.panel_text = explanations
+	$Modal/MarginContainer/VBoxContainer/prompteur.text = explanations[0]
+	$Modal.show()
+	$Darken.show()
