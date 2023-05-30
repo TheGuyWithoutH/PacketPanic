@@ -129,7 +129,7 @@ stretch = true
 
 [node name="LevelView" type="SubViewport" parent="UI/ColorRect/HBoxContainer/Game_Window/NetWork_Window/GameBoard/SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(858, 577)
+size = Vector2i(719, 577)
 render_target_update_mode = 4
 script = SubResource("GDScript_ipldv")
 
@@ -168,6 +168,7 @@ uppercase = true
 
 [node name="Documentation" parent="UI/ColorRect/HBoxContainer/Game_Window" instance=ExtResource("5_dbnn7")]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Darken" type="ColorRect" parent="UI"]
 layout_mode = 2
