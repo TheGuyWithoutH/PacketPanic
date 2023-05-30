@@ -20,4 +20,4 @@ func _on_button_pressed():
 	lvlselected.emit(levelscn,self)
 
 func _done(lvlok:bool):
-	$HBoxContainer/CheckButton.set_pressed_no_signal(lvlok)
+	get_node("HBoxContainer/CheckButton").set_pressed_no_signal(true)

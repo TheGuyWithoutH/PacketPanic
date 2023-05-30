@@ -1,35 +1,28 @@
-[color=#72FFFF][b]#####[u] system Commands [/u]#####[/b][/color][indent]
-[color=#00D7FF][b]LOCAL COMMANDS[/b][/color][indent]
-[color=#0096FF][b]netcat <resource>[/b]
-	probes a server to get resource content.
-[b]ping <dest_ip>[/b]
-	sends ping request check on host status.
-[b]nmap <target_ip>[/b]
-	maps the network at target address.[/color][/indent][/indent]
+[color=#72FFFF][b]#####[u] system Commands [/u]#####[/b][/color]
 	
 [indent][color=#00D7FF][b]LOCAL FUCTIONS[/b][/color][indent]
 
-[color=#0096FF][b]set_dest_ip([ip]) <resource>[/b]
+[color=#0096FF][b]set_dest_ip([ip])[/b]
 	Sets the packet destination ipV4 address. 
 	argument : - ip : "X.X.X.X"
 					with X between 0 and 255 (word)
 					
-[color=#0096FF][b]set_src_ip([ip]) <resource>[/b]
+[b]set_src_ip([ip])[/b]
 	Sets the packet source ipV4 address. 
 	argument : - ip : "X.X.X.X"
 					with X between 0 and 255 (word)
 					
-[color=#0096FF][b]set_port(port_nb) <resource>[/b]
+[b]set_port(port_nb)[/b]
 	Sets the packet port number. 
 	argument : - port_nb : number between 0 and 65535
 	
-[color=#0096FF][b]mac_addr([MAC]) <resource>[/b]
+[b]mac_addr([MAC])[/b]
 	Sets the source MAC address (device information)
 	argument : - MAC : "xx:xx:xx:xx:xx:xx"
 					with xx as Hexadecimal value (00-ff)
 	Example : "mac_addr(02:46:8a:ce:ff:11)"
 	
-[color=#0096FF][b]HTTP_method(nb) <resource>[/b]
+[b]HTTP_method(nb)[/b]
 	Sets the HTTP method to be used with the request.
 	argument : - nb : number of the method
 				Methods:
@@ -37,4 +30,33 @@
 				 0 - GET
 				 1 - POST
 				 2 - DELETE
+				
+[b]encrypt(nb)[/b]
+	sets the data encryption method.
+	argument : - nb : number of the method
+				Methods:
+				 0 - None
+				 1 - Vigenere
+				 2 - Aes
+				 3 - Post_quantum
+	
+[b]vpn_to(gate)[/b]
+	set Virtual Private Network gate to be used.
+	argument : -gate : Destination gate
+				Gates : 
+				 0 - Africa
+				 1 - North America
+				 2 - South America
+				 3 - Asia
+				 4 - Europe
+				 5 - Oceania
+
+
+[color=#00D7FF][b]LOCAL COMMANDS : not implemented[/b][/color][indent]
+[color=#0096FF][b]netcat <resource>[/b]
+	probes a server to get resource content.
+[b]ping <dest_ip>[/b]
+	sends ping request check on host status.
+[b]nmap <target_ip>[/b]
+	maps the network at target address.[/color][/indent]
 

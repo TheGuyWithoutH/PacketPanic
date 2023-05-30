@@ -44,9 +44,10 @@ theme = ExtResource("1_nxkxq")
 text = "Text"
 label_settings = ExtResource("3_ol1sx")
 
-[node name="CheckButton" type="CheckButton" parent="HBoxContainer"]
+[node name="CheckButton" type="CheckBox" parent="HBoxContainer"]
 layout_mode = 2
-toggle_mode = false
+theme = ExtResource("1_nxkxq")
+disabled = true
 button_mask = 0
 
 [node name="Button" type="Button" parent="HBoxContainer"]

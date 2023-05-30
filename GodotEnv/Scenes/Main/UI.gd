@@ -32,6 +32,7 @@ func _ready():
 	$Levelselector.position = Vector2(113,49)
 	$Packet_Panic.position = Vector2(1000,1000)
 	$Packet_Success.position = Vector2(1000,1000)
+	get_node("ColorRect/HBoxContainer/Game_Window/Documentation/Game/VBoxContainer/Music").set_pressed_no_signal(true)
 	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel").lvlselected.connect(_on_lvl_selected)
 	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel2").lvlselected.connect(_on_lvl_selected)
 	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel3").lvlselected.connect(_on_lvl_selected)
@@ -39,6 +40,9 @@ func _ready():
 	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel5").lvlselected.connect(_on_lvl_selected)
 	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel6").lvlselected.connect(_on_lvl_selected)
 	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel7").lvlselected.connect(_on_lvl_selected)
+	get_node("ColorRect/HBoxContainer/Game_Window/Documentation/Game/VBoxContainer/Button").pressed.connect(_on_button_levelselector)
+	get_node("ColorRect/HBoxContainer/Game_Window/Documentation/Game/VBoxContainer/Music").toggled.connect(_on_music_toggled)
+	get_node("ColorRect/HBoxContainer/Game_Window/Documentation/Game/VBoxContainer/Quit_game").pressed.connect(_on_quit_game_pressed)
 	
 	#init packet
 	currentPacket.setDestination("0.0.0.0")
@@ -190,8 +194,8 @@ func terminal_exec(cmd,arg):
 		"mac_addr":
 			currentPacket.setMac(arg)
 			return " "
-		"use_vpn":
-			currentPacket.setVPN(arg)
+		"vpn_to":
+			currentPacket.setVPN(str_to_var(arg))
 			return " "
 		"encrypt":
 			currentPacket.encryption = arg
@@ -217,6 +221,7 @@ func print_packet_info():
 	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nmac_addr : " + str(currentPacket.mac_addr.mac_address)
 	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nHTTP_meth : " + str(currentPacket.http_method)
 	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nencryption : " + str(currentPacket.encryption)
+	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nVPN : " + str(currentPacket.vpn)
 	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\n############"
 	
 
@@ -228,3 +233,17 @@ func _on_start_explanations(explanations: Array[String]):
 	$Modal/MarginContainer/VBoxContainer/prompteur.text = explanations[0]
 	$Modal.show()
 	$Darken.show()
+
+
+func _on_term_input_text_changed(new_text):
+	$keystroke.play(1)
+
+func _on_quit_game_pressed():
+	get_tree().quit(0)
+	
+func _on_music_toggled(on):
+	if (on):
+		$Music.play()
+	else:
+		$Music.stop()
+	

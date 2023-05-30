@@ -4,5 +4,5 @@ set_port
 dns_addr
 HTTP_method
 mac_addr
-use_vpn
+vpn_to
 encrypt
