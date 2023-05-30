@@ -10,6 +10,7 @@ script = ExtResource("1_hh4dx")
 manager = ExtResource("2_pabke")
 json_file = ExtResource("3_0o4ke")
 explanationsText = Array[String](["You need to get in contact with your african supplier, but how will you make your message reach Madagascar?", "In this level you will need to decide how the logic node will change your path. To do this you'll have to modify your MAC address!"])
+explanationEnd = "At home, all your devices have the same IP, they therefore need to be differentiated somehow. This is where the MAC address comes into play: it helps your packet navigate a local network and understand which device sent it."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2216, 1272)

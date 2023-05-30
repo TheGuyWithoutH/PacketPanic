@@ -5,9 +5,10 @@ class_name BasicLevel
 @export var manager: PackedScene
 @export var json_file: JSON
 @export var explanationsText: Array[String]
+@export var explanationEnd: String
 var network: NetworkManager
 
-signal endLevel(success: bool, error: String, history: Array)
+signal endLevel(success: bool, error: String, history: Array, explanations: String)
 signal startExplanation(explanations: Array[String])
 
 # Called when the node enters the scene tree for the first time.
@@ -26,7 +27,7 @@ func startLevel(packet: Packet):
 	network.startGame(packet)
 
 func _endLevel(success: bool, error: String, history: Array):
-	endLevel.emit(success, error, history)
+	endLevel.emit(success, error, history, explanationEnd)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

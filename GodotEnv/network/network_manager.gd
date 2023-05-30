@@ -97,6 +97,7 @@ func _handleStartTransfer(packet: Packet, link: int, node_id: int):
 func _sendToVPN(packet: Packet, vpn: int):
 	print('arrived after vpn')
 	history.append(nodes[vpn].position)
+	print(nodes[vpn])
 	nodes[vpn].receivePacketVpn(packet)
 	
 func _handleEndTransfer(packet: Packet, node: int, link: int):
@@ -124,6 +125,7 @@ func _endLevel(success: bool, error: String):
 
 
 func _on_time_timeout():
-	finished = true
-	$MaxTime.stop()
-	_endLevel(false, "Error 408: Request timeout, you took too long to arrive")
+	if(!finished):
+		finished = true
+		$MaxTime.stop()
+		_endLevel(false, "Error 408: Request timeout, you took too long to arrive")

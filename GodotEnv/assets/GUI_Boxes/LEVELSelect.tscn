@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cev712xjt450p"]
+[gd_scene load_steps=19 format=3 uid="uid://b8j6mkgceblvr"]
 
 [ext_resource type="Script" path="res://assets/GUI_Boxes/LEVELSelect.gd" id="1_bar2t"]
 [ext_resource type="Theme" uid="uid://bokk2oehtgs2h" path="res://Graphics/themes/black.tres" id="2_03cdy"]
@@ -11,11 +11,13 @@
 [ext_resource type="Texture2D" uid="uid://dguliqb3qwlho" path="res://assets/icons/level2.png" id="8_it3n1"]
 [ext_resource type="Texture2D" uid="uid://dktcxbuchjnc7" path="res://assets/icons/level3.png" id="10_42wpc"]
 [ext_resource type="Texture2D" uid="uid://bmkgcv7sh67s3" path="res://assets/icons/level4.png" id="12_cbcpd"]
-[ext_resource type="PackedScene" uid="uid://bq0htih0125m1" path="res://Scenes/Levels/level5/Level5.tscn" id="13_5wsiu"]
+[ext_resource type="PackedScene" uid="uid://c2fv6gmo2ybb0" path="res://Scenes/Levels/level5/Level5.tscn" id="13_5wsiu"]
 [ext_resource type="Texture2D" uid="uid://cltd8kknxqw8u" path="res://assets/icons/level5.png" id="14_7er7m"]
+[ext_resource type="PackedScene" uid="uid://bubejcm5f7i8q" path="res://Scenes/Levels/level6/Level6.tscn" id="15_4xrac"]
 [ext_resource type="Texture2D" uid="uid://dr3lya0ajk60l" path="res://assets/icons/level6.png" id="16_y4o8f"]
-[ext_resource type="PackedScene" uid="uid://bsn2w0wmyyogr" path="res://Scenes/Levels/level4/Level4.tscn" id="17_138we"]
-[ext_resource type="PackedScene" uid="uid://bsn2w0wmyyogr" path="res://Scenes/Levels/level7/Level7.tscn" id="17_b2dej"]
+[ext_resource type="PackedScene" uid="uid://bsn2w0wmyyogr" path="res://Scenes/Levels/level9/Level9.tscn" id="16_yyui6"]
+[ext_resource type="PackedScene" uid="uid://ckwaeobwlne2p" path="res://Scenes/Levels/level7/Level7.tscn" id="17_4sdaw"]
+[ext_resource type="Texture2D" uid="uid://c7rqrp7kr8kq7" path="res://assets/icons/level7.png" id="18_amm0x"]
 
 [node name="Node2D" type="ColorRect"]
 anchors_preset = 15
@@ -97,7 +99,7 @@ lvlimgpath = ExtResource("10_42wpc")
 [node name="Panel4" parent="Level_popup/VBoxContainer/MenuBar/VBoxContainer" instance=ExtResource("3_b3q23")]
 layout_mode = 2
 levelname = "Timeout: Time is money"
-levelscn = ExtResource("17_138we")
+levelscn = ExtResource("16_yyui6")
 lvlimgpath = ExtResource("12_cbcpd")
 
 [node name="Panel5" parent="Level_popup/VBoxContainer/MenuBar/VBoxContainer" instance=ExtResource("3_b3q23")]
@@ -109,13 +111,13 @@ lvlimgpath = ExtResource("14_7er7m")
 [node name="Panel6" parent="Level_popup/VBoxContainer/MenuBar/VBoxContainer" instance=ExtResource("3_b3q23")]
 layout_mode = 2
 levelname = "Attackers: Beware of the spies"
-levelscn = ExtResource("17_b2dej")
+levelscn = ExtResource("15_4xrac")
 lvlimgpath = ExtResource("16_y4o8f")
 
 [node name="Panel7" parent="Level_popup/VBoxContainer/MenuBar/VBoxContainer" instance=ExtResource("3_b3q23")]
 layout_mode = 2
 levelname = "DNS: Could you please indicate me the direction?"
-levelscn = ExtResource("17_b2dej")
-lvlimgpath = ExtResource("16_y4o8f")
+levelscn = ExtResource("17_4sdaw")
+lvlimgpath = ExtResource("18_amm0x")
 
 [connection signal="pressed" from="Level_popup/VBoxContainer/HBoxContainer/Button" to="." method="_on_close_pressed"]

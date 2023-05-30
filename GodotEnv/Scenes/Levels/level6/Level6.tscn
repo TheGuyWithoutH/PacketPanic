@@ -1,16 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsn2w0wmyyogr"]
+[gd_scene load_steps=5 format=3 uid="uid://bubejcm5f7i8q"]
 
-[ext_resource type="Script" path="res://Scenes/Levels/BasicLevel.gd" id="1_gocfk"]
-[ext_resource type="PackedScene" uid="uid://b0syi3emene8q" path="res://network/network_manager.tscn" id="2_ta7ol"]
-[ext_resource type="JSON" path="res://Scenes/Levels/level6/level6.json" id="3_yp53x"]
-[ext_resource type="Texture2D" uid="uid://gemwftom1k0u" path="res://assets/images/Carte.png" id="4_eidqf"]
+[ext_resource type="Script" path="res://Scenes/Levels/BasicLevel.gd" id="1_21ivu"]
+[ext_resource type="PackedScene" uid="uid://b0syi3emene8q" path="res://network/network_manager.tscn" id="2_c3ou7"]
+[ext_resource type="JSON" path="res://Scenes/Levels/level6/level6.json" id="3_d8p2s"]
+[ext_resource type="Texture2D" uid="uid://gemwftom1k0u" path="res://assets/images/Carte.png" id="4_gg31e"]
 
 [node name="Level6" type="Node2D"]
-script = ExtResource("1_gocfk")
-manager = ExtResource("2_ta7ol")
-json_file = ExtResource("3_yp53x")
+script = ExtResource("1_21ivu")
+manager = ExtResource("2_c3ou7")
+json_file = ExtResource("3_d8p2s")
 explanationsText = Array[String](["It's your mom's birthday! You should send her a message!"])
+explanationEnd = "In this level we've introduced you to attacker nodes. These are a representation of the dangers you might encounter on the web: viruses, hackers, phishing attempts, the possibilities are unfortunately endless.These dangers will typically try to steal information from you, such as your banking information!"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2216, 1272)
-texture = ExtResource("4_eidqf")
+texture = ExtResource("4_gg31e")

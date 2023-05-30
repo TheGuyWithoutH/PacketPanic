@@ -4,7 +4,7 @@ var encryptionNeeded: Utils.Encryption
 
 func create(num_links, id, params):
 	assert(params['encryption'] != null)
-	super.create(1, id, params)
+	super.create(num_links, id, params)
 	match(params['encryption']):
 		'none':
 			encryptionNeeded = Utils.Encryption.NONE

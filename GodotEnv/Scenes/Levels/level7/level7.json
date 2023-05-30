@@ -2,122 +2,129 @@
   "nodes": [
 	{
 	  "type": "start",
-	  "position": [373, 231] 
+	  "position": [2081, 897]
 	},
 	{
 	  "type": "server",
-	  "position": [-143, 169],
+	  "position": [1565, 835],
 	  "out_num": 2,
-	  "addr": "185.25.195.104"
+	  "addr": "185.25.195.104",
+	  "addr_visibility": "on"
 	},
-	{"type": "vpn",
-	"position": [401, 145],
-	"out_num": 1,
-	"index": 0
+	{
+	  "type": "vpn",
+	  "position": [2109, 811],
+	  "out_num": 1,
+	  "name": "europe",
+	  "addr": "185.25.195.104",
+	  "vpn_list": [13, 6, 18, 19, 2, 16]
 	},
-	{"type": "dead",
-	"position": [209, 367],
-	"out_num": 1
+	{ "type": "dead", "position": [1917, 1033], "out_num": 1 },
+	{ "type": "logic", "position": [1909, 909], "out_num": 4 },
+	{ "type": "slow", "position": [1823, 585], "out_num": 2, "delay": 10 },
+	{
+	  "type": "vpn",
+	  "position": [1465, 899],
+	  "out_num": 1,
+	  "name": "north_america",
+	  "addr": "185.25.195.104",
+	  "vpn_list": [13, 6, 18, 19, 2, 16]
 	},
-	{"type": "logic",
-	"position": [201, 243],
-	"out_num": 4
+
+	{ "type": "start", "position": [2581, 555] },
+	{
+	  "type": "attacker",
+	  "position": [2805, 563],
+	  "out_num": 2,
+	  "encryption": "vigenere"
 	},
-	{"type": "slow",
-	"position": [115, -81],
-	"out_num": 2
+	{
+	  "type": "server",
+	  "position": [3109, 567],
+	  "out_num": 1,
+	  "addr": "185.25.195.104",
+	  "addr_visibility": "on"
 	},
-	{"type": "vpn",
-	"position": [-243, 233],
-	"out_num": 1,
-	"index": 0
+
+	{ "type": "start", "position": [2130, 1428] },
+	{ "type": "logic", "position": [2153, 1252], "out_num": 5 },
+	{ "type": "dead", "position": [2296, 1182], "out_num": 1 },
+	{
+	  "type": "vpn",
+	  "position": [2030, 1226],
+	  "out_num": 1,
+	  "name": "africa",
+	  "addr": "185.25.195.104",
+	  "vpn_list": [13, 6, 18, 19, 2, 16]
 	},
-	
-	{"type": "start",
-	"position": [873, -111]
+	{ "type": "dead", "position": [2055, 1080], "out_num": 1 },
+	{
+	  "type": "dns",
+	  "position": [2245, 976],
+	  "out_num": 1,
+	  "addr": "185.25.195.105",
+	  "translation": "185.25.195.104"
 	},
-	{"type": "attacker",
-	"position": [1097, -103],
-	"out_num": 2
+	{
+	  "type": "vpn",
+	  "position": [3086, 1450],
+	  "out_num": 1,
+	  "name": "oceania",
+	  "addr": "185.25.195.104",
+	  "vpn_list": [13, 6, 18, 19, 2, 16]
 	},
-	{"type": "server",
-	"position": [1401, -99],
-	"out_num": 1
+	{
+	  "type": "server",
+	  "position": [2910, 1433],
+	  "out_num": 1,
+	  "addr": "185.25.195.104",
+	  "http_method": "GET",
+	  "addr_visibility": "off"
 	},
-	
-	{"type": "start",
-	"position": [422, 762]
+	{
+	  "type": "vpn",
+	  "position": [1850, 1650],
+	  "out_num": 1,
+	  "name": "south_america",
+	  "addr": "185.25.195.104",
+	  "vpn_list": [13, 6, 18, 19, 2, 16]
 	},
-	{"type": "logic",
-	"position": [445, 586],
-	"out_num": 5
+	{
+	  "type": "vpn",
+	  "position": [3002, 976],
+	  "out_num": 1,
+	  "name": "asia",
+	  "addr": "185.25.195.104",
+	  "vpn_list": [13, 6, 18, 19, 2, 16]
 	},
-	{"type": "vpn",
-	"position": [588, 516],
-	"out_num": 1,
-	"index": 3
+	{
+	  "type": "server",
+	  "position": [1688, 1538],
+	  "out_num": 1,
+	  "addr": "185.25.195.106",
+	  "http_method": "GET",
+	  "addr_visibility": "off"
 	},
-	{"type": "vpn",
-	"position": [322, 560],
-	"out_num": 1,
-	"index": 1
-	},
-	{"type": "vpn",
-	"position": [347, 414],
-	"out_num": 1,
-	"index": 2
-	},
-	{"type": "dns",
-	"position": [537, 310],
-	"out_num": 1,
-	"addr": "185.25.195.105",
-	"translation": "185.25.195.104"
-	},
-	{"type": "vpn",
-	"position": [1202, 767],
-	"out_num": 1,
-	"index": 1
-	},
-	{"type": "server",
-	"position": [1378, 784],
-	"out_num": 1,
-	"addr": "185.25.195.104",
-	"http_method": "GET"
-	},
-	{"type": "vpn",
-	"position": [1126, 292],
-	"out_num": 1,
-	"index": 2
-	},
-	{"type": "vpn",
-	"position": [1294, 310],
-	"out_num": 1,
-	"index": 3
-	},
-	{"type": "server",
-	"position": [989, 127],
-	"out_num": 1,
-	"addr": "185.25.195.106",
-	"http_method": "GET"
-	},
-	{"type": "server",
-	"position": [1389, 210],
-	"out_num": 1,
-	"addr": "185.25.195.107",
-	"http_method": "GET"
+	{
+	  "type": "server",
+	  "position": [3097, 876],
+	  "out_num": 1,
+	  "addr": "185.25.195.107",
+	  "http_method": "GET",
+	  "addr_visibility": "off"
 	}
-],
-"links":[
+  ],
+  "links": [
 	[0, 0, 4, 0, 5],
 	[4, 1, 3, 0, 5],
 	[4, 2, 5, 0, 15],
 	[4, 3, 2, 0, 5],
 	[5, 1, 1, 0, 15],
 	[6, 0, 1, 1, 5],
-	
+
 	[7, 0, 8, 0, 5],
 	[8, 1, 9, 0, 5],
-	
+
 	[10, 0, 11, 0, 5],
 	[11, 1, 13, 0, 5],
 	[11, 2, 14, 0, 5],
@@ -126,7 +133,7 @@
 	[18, 0, 20, 0, 5],
 	[19, 0, 21, 0, 5],
 	[16, 0, 17, 0, 5]
-],
-"start_node": 10,
+  ],
+  "start_node": 10,
   "timeout": 20
 }

@@ -39,6 +39,9 @@ func receivePacket(packet: Packet, link: int):
 	packet.setMoving(false)
 	pass
 
+func receivePacketVPN(packet: Packet):
+	pass
+
 # Send a packet to a node
 func _sendPacket(packet: Packet, link: int):
 	sendPacket.emit(packet, links[link], node_id)

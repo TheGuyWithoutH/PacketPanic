@@ -39,6 +39,7 @@ func _ready():
 	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel5").lvlselected.connect(_on_lvl_selected)
 	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel6").lvlselected.connect(_on_lvl_selected)
 	get_node("Levelselector/Level_popup/VBoxContainer/MenuBar/VBoxContainer/Panel7").lvlselected.connect(_on_lvl_selected)
+	
 	#init packet
 	currentPacket.setDestination("0.0.0.0")
 	currentPacket.setSource("1.1.1.1")
@@ -145,18 +146,20 @@ func is_from(word,file):
 	return false
 
 	
-func endLevel(success: bool, error: String, history: Array):
+func endLevel(success: bool, error: String, history: Array, explanations: String):
 	print('end: ' + error)
 	lastHistory = history
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.editable = true
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.tick_count = lastHistory.size()
 	if(success):
 		$Packet_Success.position = Vector2(363,210)
-		$Packet_Success/MarginContainer/VBoxContainer/RichTextLabel.text = "The Packet arrived safely at " + str(currentPacket.dst_addr.ip_address)
-		#levelbar._done(true)
+		$Packet_Success/MarginContainer/VBoxContainer/RichTextLabel.text = "The Packet arrived safely at " + str(currentPacket.dst_addr.ip_address) + "\n\n" + explanations
+		levelbar._done(true)
+		$VictorySound.play()
 	else:
 		$Packet_Panic.position = Vector2(363,210)
 		$Packet_Panic/MarginContainer/VBoxContainer/RichTextLabel.text = error
+		$ErrorSound.play()
 	pass
 
 

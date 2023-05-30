@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bq0htih0125m1"]
+[gd_scene load_steps=5 format=3 uid="uid://c2fv6gmo2ybb0"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/BasicLevel.gd" id="1_gocfk"]
 [ext_resource type="PackedScene" uid="uid://b0syi3emene8q" path="res://network/network_manager.tscn" id="2_ta7ol"]
@@ -10,6 +10,7 @@ script = ExtResource("1_gocfk")
 manager = ExtResource("2_ta7ol")
 json_file = ExtResource("3_6eh8i")
 explanationsText = Array[String](["Your american collaborators need orders! It might be a good idea to go through a VPN to reach them?"])
+explanationEnd = "Our VPN nodes represent the existence of VPN services"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2216, 1272)

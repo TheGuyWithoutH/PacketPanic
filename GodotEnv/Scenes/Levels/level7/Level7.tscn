@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsn2w0wmyyogr"]
+[gd_scene load_steps=5 format=3 uid="uid://ckwaeobwlne2p"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/BasicLevel.gd" id="1_gocfk"]
 [ext_resource type="PackedScene" uid="uid://b0syi3emene8q" path="res://network/network_manager.tscn" id="2_ta7ol"]

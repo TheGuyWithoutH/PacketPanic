@@ -10,6 +10,7 @@ script = ExtResource("1_hh4dx")
 manager = ExtResource("2_pabke")
 json_file = ExtResource("3_ivqdx")
 explanationsText = Array[String](["One of your subordinates has uploaded some bitcoins for you. The server hosting them is quite far away from you unfortunately, so you'll have to go through quite a few nodes to reach it.", "This time you can observe two new nodes, the dead node, marked with a red cross, and the logic node.", "In this level you'll have to repeat what you did in the last level, but with one addition: you have to tell your packet what method to use once it gets to the server! Check the documentation on the right to learn how. (Remember you want to get your bitcoins)"])
+explanationEnd = "The HTTP Method let the application running on the server know the action you want to perform. Like in your computer file system, you can see a file (GET), put some information in a file (POST), or delete some information (DELETE)"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2216, 1272)
