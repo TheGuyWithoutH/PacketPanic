@@ -52,5 +52,6 @@ text = "X"
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_1eiya")
+bbcode_enabled = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

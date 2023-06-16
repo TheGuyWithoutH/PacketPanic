@@ -8,7 +8,7 @@ var dst_addr
 var mac_addr: Utils.MACAddress
 var http_method: Utils.HTTPMethod = -1
 var port: int = -1
-var vpn
+var vpn = Utils.VPNs.EUROPE
 var encryption
 var isTampered = false
 @export var message = ""

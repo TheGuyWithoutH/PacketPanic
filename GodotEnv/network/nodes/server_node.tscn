@@ -1,11 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpn0ieed6goqx"]
+[gd_scene load_steps=6 format=3 uid="uid://dpn0ieed6goqx"]
 
 [ext_resource type="Script" path="res://network/nodes/server_node.gd" id="1_ecsxn"]
 [ext_resource type="Texture2D" uid="uid://bt6om4j3rajon" path="res://assets/icons/Server.png" id="2_t4hw7"]
 
+[sub_resource type="Gradient" id="Gradient_t4vt8"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.669841, 1)
+colors = PackedColorArray(1, 1, 0.768627, 0.294118, 1, 1, 1, 0.0349206, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pywfp"]
+gradient = SubResource("Gradient_t4vt8")
+fill = 1
+fill_from = Vector2(0.501424, 0.487179)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xjt38"]
+diffuse_texture = SubResource("GradientTexture2D_pywfp")
+
 [node name="ServerNode" type="Node2D"]
 z_index = 3
 script = ExtResource("1_ecsxn")
+
+[node name="Highligt" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("CanvasTexture_xjt38")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)

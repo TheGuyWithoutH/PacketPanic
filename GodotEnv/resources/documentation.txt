@@ -13,22 +13,22 @@
 	Sets the packet destination ipV4 address. 
 	argument : - ip : "X.X.X.X"
 					with X between 0 and 255 (word)
-					
+
 [color=#0096FF][b]set_src_ip([ip]) <resource>[/b]
 	Sets the packet source ipV4 address. 
 	argument : - ip : "X.X.X.X"
 					with X between 0 and 255 (word)
-					
+
 [color=#0096FF][b]set_port(port_nb) <resource>[/b]
 	Sets the packet port number. 
 	argument : - port_nb : number between 0 and 65535
-	
+
 [color=#0096FF][b]mac_addr([MAC]) <resource>[/b]
 	Sets the source MAC address (device information)
 	argument : - MAC : "xx:xx:xx:xx:xx:xx"
 					with xx as Hexadecimal value (00-ff)
 	Example : "mac_addr(02:46:8a:ce:ff:11)"
-	
+
 [color=#0096FF][b]HTTP_method(nb) <resource>[/b]
 	Sets the HTTP method to be used with the request.
 	argument : - nb : number of the method
@@ -37,4 +37,24 @@
 				 0 - GET
 				 1 - POST
 				 2 - DELETE
+
+[color=#0096FF][b]use_vpn(vpn_name) <resource>[/b]
+	Sets the default VPN you want your trafic to go to.
+	argument : - vpn_name : the name of the vpn
+				Existing VPNs:
+				- Africa
+				- Asia
+				- Europe
+				- North America
+				- Oceania
+				- South America
+
+[color=#0096FF][b]encrypt(encryption_method) <resource>[/b]
+	Sets the method of encryption for the packet data.
+	argument : - nb : number of the method
+				Encryption methods:
+				- None
+				- Vigenere
+				- Aes
+				- Post Quantum
 

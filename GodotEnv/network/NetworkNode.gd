@@ -8,6 +8,7 @@ var node_id: int
 signal sendPacket(packet: Packet, link: int, node_id: int)
 signal endGame(success: bool, error: String)
 signal sendVPN(packet: Packet, vpn: int)
+signal highlightServer(node_id: int)
 var ip: Utils.IPAddress = null
 
 func create(num_links, id, params):
@@ -37,9 +38,6 @@ func receivePacket(packet: Packet, link: int):
 	assert(links.find(link) > -1 && links.find(link) < num_links)
 	packet.position = self.position
 	packet.setMoving(false)
-	pass
-
-func receivePacketVPN(packet: Packet):
 	pass
 
 # Send a packet to a node

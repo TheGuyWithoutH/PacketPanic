@@ -63,7 +63,8 @@
 	  "position": [2245, 976],
 	  "out_num": 1,
 	  "addr": "185.25.195.105",
-	  "translation": "185.25.195.104"
+	  "translation": "185.25.195.106",
+	  "dest_id": 20
 	},
 	{
 	  "type": "vpn",

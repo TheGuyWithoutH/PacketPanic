@@ -5,7 +5,7 @@ class_name BasicLevel
 @export var manager: PackedScene
 @export var json_file: JSON
 @export var explanationsText: Array[String]
-@export var explanationEnd: String
+@export_multiline var explanationEnd: String
 var network: NetworkManager
 
 signal endLevel(success: bool, error: String, history: Array, explanations: String)
@@ -28,6 +28,9 @@ func startLevel(packet: Packet):
 
 func _endLevel(success: bool, error: String, history: Array):
 	endLevel.emit(success, error, history, explanationEnd)
+
+func quitLevel(packet: Packet):
+	remove_child(packet)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

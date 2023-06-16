@@ -44,7 +44,6 @@ func receivePacket(packet: Packet, link: int):
 	sendVPN.emit(packet, vpn_list[chosen_vpn])
 
 func receivePacketVPN(packet: Packet):
-	super.receivePacketVPN(packet)
 	packet.setSource(ip.ip_address)
 	_sendPacket(packet, 0)
 	

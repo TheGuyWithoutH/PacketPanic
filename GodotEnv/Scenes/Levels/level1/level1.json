@@ -123,6 +123,7 @@
 	[17, 1, 15, 1, 5],
   ],
   "start_node": 0,
-  "timeout": 20
+  "timeout": 20,
+  "end_node": 1
 }
 

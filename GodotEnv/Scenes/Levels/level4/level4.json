@@ -124,5 +124,6 @@
 	[17, 1, 15, 1, 5],
   ],
   "start_node": 13,
-  "timeout": 16
+  "timeout": 16,
+  "end_node": 15
 }

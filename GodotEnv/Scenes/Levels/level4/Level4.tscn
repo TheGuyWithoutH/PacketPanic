@@ -10,7 +10,7 @@ script = ExtResource("1_gocfk")
 manager = ExtResource("2_ta7ol")
 json_file = ExtResource("3_fr7px")
 explanationsText = Array[String](["Your cop friend has told you some worrying rumors. You have to quickly inform your british branch about it, before it's too late!", "Speed will be very important here, so try to avoid any busy node that would slow you down!"])
-explanationEnd = "This level introduced the slow node. It represents something that can happen in real life: when a lot of data needs to pass through a single node of the network,the connexion might slow down. You might notice this in our house: if you start downloading a lot of files, you might notice that it will take longer to load other websites!"
+explanationEnd = "This level introduced the slow node. It represents something that can happen in real life: when a lot of data needs to pass through a single node of the network,the connexion might slow down. You might notice this in our house: if you start downloading a lot of files, it will take longer to load other websites!"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2216, 1272)

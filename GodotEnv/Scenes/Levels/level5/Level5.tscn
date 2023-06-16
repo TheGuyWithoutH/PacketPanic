@@ -10,7 +10,9 @@ script = ExtResource("1_gocfk")
 manager = ExtResource("2_ta7ol")
 json_file = ExtResource("3_6eh8i")
 explanationsText = Array[String](["Your american collaborators need orders! It might be a good idea to go through a VPN to reach them?"])
-explanationEnd = "Our VPN nodes represent the existence of VPN services"
+explanationEnd = "The VPNs are a way to hide the origin of a traffic. From everyone's perspective, the data you send are encrypted and addressed to the VPN you want, and it is the VPN itself that perform the request to the server.
+
+Your packets no longer reach the server with your IP adress, but the owner of the VPN, or a statistical analysis can still reveal your identity."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2216, 1272)

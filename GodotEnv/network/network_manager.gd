@@ -4,7 +4,7 @@ class_name NetworkManager
 
 var start_node: int = -1
 var end_node: Utils.IPAddress
-var nodes: Array
+var nodes: Array[NetworkNode]
 var links: Array
 var history: Array
 var timeout: int
@@ -52,7 +52,8 @@ func create(level: Dictionary):
 				nodeObj.create(node['out_num'], i, null)
 			'dns':
 				nodeObj = DnsNode.instantiate()
-				nodeObj.create(node['out_num'], i, { 'addr': node['addr'], 'translation': node['translation'] })
+				print(node)
+				nodeObj.create(node['out_num'], i, { 'addr': node['addr'], 'translation': node['translation'], 'dest_id': node['dest_id'] })
 			'slow':
 				nodeObj = SlowNode.instantiate()
 				nodeObj.create(node['out_num'], i, { 'delay': node['delay'] })
@@ -67,6 +68,7 @@ func create(level: Dictionary):
 		nodeObj.position = Vector2(node['position'][0], node['position'][1])
 		nodeObj.sendPacket.connect(_handleStartTransfer)
 		nodeObj.sendVPN.connect(_sendToVPN)
+		nodeObj.highlightServer.connect(showHighlightEndServer)
 		nodeObj.endGame.connect(_endLevel)
 		i += 1
 	
@@ -89,6 +91,13 @@ func create(level: Dictionary):
 	idlePacket.position = nodes[start_node].position
 	add_child(idlePacket)
 	print(idlePacket.position)
+	
+	if level.get('end_node'):
+		showHighlightEndServer(level['end_node'])
+
+func showHighlightEndServer(node_id: int):
+	nodes[node_id].showHighlight()
+	
 
 func _handleStartTransfer(packet: Packet, link: int, node_id: int):
 	print(link)
@@ -98,7 +107,7 @@ func _sendToVPN(packet: Packet, vpn: int):
 	print('arrived after vpn')
 	history.append(nodes[vpn].position)
 	print(nodes[vpn])
-	nodes[vpn].receivePacketVpn(packet)
+	nodes[vpn].receivePacketVPN(packet)
 	
 func _handleEndTransfer(packet: Packet, node: int, link: int):
 	print('end transfer')

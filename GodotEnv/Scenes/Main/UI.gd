@@ -23,6 +23,8 @@ func _ready():
 	func_reg.compile("(\\w+)\\((.*)\\)")
 	command_reg.compile("(\\w+) *(.*)")
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.editable = false
+	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.tick_count = 1
+	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.value = 0
 	$ColorRect/HBoxContainer/User_Input_Panel/TermInput.text = "> "
 	$ColorRect/HBoxContainer/User_Input_Panel/TermInput.caret_column = 2
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeval.text = "%d" % $ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.value
@@ -54,6 +56,8 @@ func _on_lvl_selected(levelscn: PackedScene,cur_bar: LevelBar):
 	$Levelselector.position = Vector2(1000,1000)
 
 func setLevel(newLevel: PackedScene):
+	if level:
+		level.quitLevel(currentPacket)
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/GameBoard/SubViewportContainer/LevelView.remove_child(level)
 	level = newLevel.instantiate()
 	level.endLevel.connect(endLevel)
@@ -91,7 +95,7 @@ func _on_LineEdit_text_entered(new_text):
 		$ColorRect/HBoxContainer/User_Input_Panel/TermInput.clear()
 		$ColorRect/HBoxContainer/User_Input_Panel/TermInput.text = "> "
 		$ColorRect/HBoxContainer/User_Input_Panel/TermInput.caret_column = 2
-		new_text = new_text.substr(2)
+		new_text = new_text.substr(2) if new_text.contains("> ") else new_text
 		var cmd_funct = func_reg.search(new_text)
 		var cmd_command = command_reg.search(new_text)
 		if cmd_funct:
@@ -133,6 +137,8 @@ func _on_Start_Button_pressed():
 	print("start")
 	lastHistory.clear()
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.editable = false
+	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.tick_count = 1
+	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.value = 0
 	level.startLevel(currentPacket)
 	
 func is_from(word,file):
@@ -151,9 +157,10 @@ func endLevel(success: bool, error: String, history: Array, explanations: String
 	lastHistory = history
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.editable = true
 	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.tick_count = lastHistory.size()
+	$ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider.value = 100
 	if(success):
 		$Packet_Success.position = Vector2(363,210)
-		$Packet_Success/MarginContainer/VBoxContainer/RichTextLabel.text = "The Packet arrived safely at " + str(currentPacket.dst_addr.ip_address) + "\n\n" + explanations
+		$Packet_Success/MarginContainer/VBoxContainer/RichTextLabel.parse_bbcode("The Packet arrived safely at " + str(currentPacket.dst_addr.ip_address) + ".\n\n" + str(explanations))
 		levelbar._done(true)
 		$VictorySound.play()
 	else:
@@ -191,10 +198,10 @@ func terminal_exec(cmd,arg):
 			currentPacket.setMac(arg)
 			return " "
 		"use_vpn":
-			currentPacket.setVPN(arg)
+			currentPacket.setVPN(_getVpnFromString(arg))
 			return " "
 		"encrypt":
-			currentPacket.encryption = arg
+			currentPacket.encryptMessage(_getEncryptionFromString(arg))
 			return " "
 		"help":
 			var help = "\nAvailable commands :\n"
@@ -213,10 +220,11 @@ func print_packet_info():
 	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "############"
 	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nsrc_ip : " + str(currentPacket.src_addr.ip_address)
 	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\ndest_ip : " + str(currentPacket.dst_addr.ip_address)
-	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nport : " + str(currentPacket.port)
+	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nport : " + (str(currentPacket.port) if currentPacket.port > -1 else "NONE")
 	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nmac_addr : " + str(currentPacket.mac_addr.mac_address)
-	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nHTTP_meth : " + str(currentPacket.http_method)
-	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nencryption : " + str(currentPacket.encryption)
+	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nHTTP_meth : " + str(Utils.HTTPMethod.keys()[currentPacket.http_method] if currentPacket.http_method > -1 else "NONE")
+	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nencryption : " + str(Utils.Encryption.keys()[currentPacket.encryption])
+	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\nvpn_preference : " + str(Utils.VPNs.keys()[currentPacket.vpn])
 	$ColorRect/HBoxContainer/User_Input_Panel/Packet2.text += "\n############"
 	
 
@@ -228,3 +236,33 @@ func _on_start_explanations(explanations: Array[String]):
 	$Modal/MarginContainer/VBoxContainer/prompteur.text = explanations[0]
 	$Modal.show()
 	$Darken.show()
+
+func _getVpnFromString(input: String):
+	match input.to_lower():
+		"europe":
+			return Utils.VPNs.EUROPE
+		"africa":
+			return Utils.VPNs.AFRICA
+		"asia":
+			return Utils.VPNs.ASIA
+		"oceania":
+			return Utils.VPNs.OCEANIA
+		"north america":
+			return Utils.VPNs.NORTH_AMERICA
+		"south america":
+			return Utils.VPNs.SOUTH_AMERICA
+
+func _getEncryptionFromString(input: String):
+	match input.to_lower():
+		"none":
+			return Utils.Encryption.NONE
+		"vigenere":
+			return Utils.Encryption.VIGENERE
+		"aes":
+			return Utils.Encryption.AES
+		"post quantum":
+			return Utils.Encryption.POST_QUANTUM
+
+func _clickOnTerminalFocusesInput(event: InputEvent):
+	if (event is InputEventMouseButton && event.pressed && event.button_index == 1):
+		$ColorRect/HBoxContainer/User_Input_Panel/TermInput.grab_focus()

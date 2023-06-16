@@ -10,6 +10,9 @@ script = ExtResource("1_gocfk")
 manager = ExtResource("2_ta7ol")
 json_file = ExtResource("3_8qjb8")
 explanationsText = Array[String](["Jack was supposed to send you a report today, but which Jack was it? The one from Australia, or the South American one? Or maybe it's the one from China?", "You should really learn to better organize your agenda.", "Luckily for you, a DNS node will be able to tell you where your packet is supposed to go! So make sure to pass by one on your way!"])
+explanationEnd = "The DNS plays a central role in helping people access the content they want on the internet. It provides a translation between a human readable website name, to its real IP adress.
+
+You thus first ask it for your final destnation, then send another packet (he one with the data) with the right adress once you know it."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2216, 1272)

@@ -46,4 +46,5 @@ func receivePacket(packet: Packet, link: int):
 		else:
 			_sendPacket(packet, 0)
 
-
+func showHighlight():
+	$Highligt.show()
