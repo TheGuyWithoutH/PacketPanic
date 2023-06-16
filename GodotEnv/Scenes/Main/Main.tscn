@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Scenes/Main/UI.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://c1tqfchmcoeki" path="res://Scenes/Levels/empty/EmptyLevel.tscn" id="3_35lyv"]
 [ext_resource type="Theme" uid="uid://bokk2oehtgs2h" path="res://Graphics/themes/black.tres" id="4"]
-[ext_resource type="Texture2D" uid="uid://dm6ijqbi8a2h3" path="res://assets/icons/start.png" id="5_gbxas"]
 [ext_resource type="PackedScene" uid="uid://cy8606vymsllt" path="res://Scenes/Main/right_sidebar.tscn" id="5_dbnn7"]
+[ext_resource type="Texture2D" uid="uid://dm6ijqbi8a2h3" path="res://assets/icons/start.png" id="5_gbxas"]
 [ext_resource type="PackedScene" uid="uid://dw3d5mprbw0yi" path="res://assets/GUI_Boxes/Modal.tscn" id="10_4q2cm"]
 [ext_resource type="AudioStream" uid="uid://dqynqvodlxl68" path="res://assets/PacketPanic_sfx/Server-Room.mp3" id="11_nwfhv"]
 [ext_resource type="AudioStream" uid="uid://me53m17t2v88" path="res://assets/PacketPanic_sfx/error1.mp3" id="11_tv2u3"]
@@ -199,39 +199,18 @@ uppercase = true
 [node name="Documentation" parent="UI/ColorRect/HBoxContainer/Game_Window" instance=ExtResource("5_dbnn7")]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.2
-theme = ExtResource("13")
 
 [node name="Doc" type="TabBar" parent="UI/ColorRect/HBoxContainer/Game_Window/Documentation"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.4
 theme = ExtResource("4")
 
-[node name="Documentation" type="RichTextLabel" parent="UI/ColorRect/HBoxContainer/Game_Window/Documentation/Doc"]
-clip_contents = false
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-focus_mode = 2
-theme = ExtResource("4")
-bbcode_enabled = true
-autowrap_mode = 0
-selection_enabled = true
-script = ExtResource("12")
-
 [node name="Game" type="TabBar" parent="UI/ColorRect/HBoxContainer/Game_Window/Documentation"]
 visible = false
 layout_mode = 2
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
-
-[node name="Button" type="Button" parent="UI/ColorRect/HBoxContainer/Game_Window/Documentation/Game"]
-layout_mode = 1
-offset_right = 119.0
-offset_bottom = 28.0
-text = "Level Selector"
 
 [node name="Darken" type="ColorRect" parent="UI"]
 visible = false
@@ -306,16 +285,15 @@ stream = ExtResource("11_tv2u3")
 
 [node name="VictorySound" type="AudioStreamPlayer" parent="UI"]
 stream = ExtResource("13_vg4xg")
-
-stream = ExtResource("14_1ty45")
 volume_db = -15.0
 
-[connection signal="text_changed" from="UI/ColorRect/HBoxContainer/User_Input_Panel/TermInput" to="UI" method="_on_term_input_text_changed"]
+[node name="keystroke" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource("14_1ty45")
+
 [connection signal="gui_input" from="UI/ColorRect/HBoxContainer/User_Input_Panel/Terminal" to="UI" method="_clickOnTerminalFocusesInput"]
+[connection signal="text_changed" from="UI/ColorRect/HBoxContainer/User_Input_Panel/TermInput" to="UI" method="_on_term_input_text_changed"]
 [connection signal="text_changed" from="UI/ColorRect/HBoxContainer/User_Input_Panel/TermInput" to="UI/ColorRect/HBoxContainer/User_Input_Panel/TermInput" method="_on_TermInput_text_changed"]
 [connection signal="text_submitted" from="UI/ColorRect/HBoxContainer/User_Input_Panel/TermInput" to="UI" method="_on_LineEdit_text_entered"]
 [connection signal="pressed" from="UI/ColorRect/HBoxContainer/User_Input_Panel/Button" to="UI" method="_on_Start_Button_pressed"]
 [connection signal="value_changed" from="UI/ColorRect/HBoxContainer/Game_Window/NetWork_Window/timeline/timecont/timeslider" to="UI" method="_on_timeslider_value_changed"]
-[connection signal="pressed" from="UI/ColorRect/HBoxContainer/Game_Window/Documentation/Game/Button" to="UI" method="_on_button_levelselector"]
 [connection signal="closed_error" from="UI/Packet_Success" to="UI" method="_on_button_levelselector"]
-[node name="keystroke" type="AudioStreamPlayer" parent="UI"]

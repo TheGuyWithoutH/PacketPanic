@@ -21,6 +21,7 @@
 	argument : - MAC : "xx:xx:xx:xx:xx:xx"
 					with xx as Hexadecimal value (00-ff)
 	Example : "mac_addr(02:46:8a:ce:ff:11)"
+	Hint : As there are a few devices in the network, oly the last number will identify you.
 
 [color=#0096FF][b]HTTP_method(nb) <resource>[/b]
 	Sets the HTTP method to be used with the request.
@@ -32,36 +33,16 @@
 				 2 - DELETE
 				
 [b]encrypt(nb)[/b]
-	sets the data encryption method.
+	Sets the data encryption method.
 	argument : - nb : number of the method
-				Methods:
-				 0 - None
-				 1 - Vigenere
-				 2 - Aes
-				 3 - Post_quantum
+				Encryption methods:
+				- None
+				- Vigenere
+				- Aes
+				- Post Quantum
 	
 [b]vpn_to(gate)[/b]
-	set Virtual Private Network gate to be used.
-	argument : -gate : Destination gate
-				Gates : 
-				 0 - Africa
-				 1 - North America
-				 2 - South America
-				 3 - Asia
-				 4 - Europe
-				 5 - Oceania
-
-
-[color=#00D7FF][b]LOCAL COMMANDS : not implemented[/b][/color][indent]
-[color=#0096FF][b]netcat <resource>[/b]
-	probes a server to get resource content.
-[b]ping <dest_ip>[/b]
-	sends ping request check on host status.
-[b]nmap <target_ip>[/b]
-	maps the network at target address.[/color][/indent]
-
-[color=#0096FF][b]use_vpn(vpn_name) <resource>[/b]
-	Sets the default VPN you want your trafic to go to.
+	Set Virtual Private Network gate to be used, the one you want your trafic to go to.
 	argument : - vpn_name : the name of the vpn
 				Existing VPNs:
 				- Africa
@@ -71,12 +52,12 @@
 				- Oceania
 				- South America
 
-[color=#0096FF][b]encrypt(encryption_method) <resource>[/b]
-	Sets the method of encryption for the packet data.
-	argument : - nb : number of the method
-				Encryption methods:
-				- None
-				- Vigenere
-				- Aes
-				- Post Quantum
+
+[color=#00D7FF][b]LOCAL COMMANDS : not implemented[/b][/color][indent]
+[color=#0096FF][b]netcat <resource>[/b]
+	probes a server to get resource content.
+[b]ping <dest_ip>[/b]
+	sends ping request check on host status.
+[b]nmap <target_ip>[/b]
+	maps the network at target address.[/color][/indent]
 
