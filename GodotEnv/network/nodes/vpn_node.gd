@@ -39,6 +39,7 @@ func create(num_links, id, params):
 	vpn_list = params['vpn_list']
 
 func receivePacket(packet: Packet, link: int):
+	print("catched packet !\n")
 	super.receivePacket(packet, link)
 	var chosen_vpn = packet.vpn if packet.vpn else Utils.VPNs.EUROPE
 	sendVPN.emit(packet, vpn_list[chosen_vpn])
